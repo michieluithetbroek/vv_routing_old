@@ -7,8 +7,12 @@
 
 #include "main.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
+#include "gurobi_c++.h"
+
+int main(int argc, const char * argv[])
+{
+   
+    GRBEnv env = GRBEnv(true);
     
     std::cout << "Hello, World!\n";
     return 0;
