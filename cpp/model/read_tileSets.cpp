@@ -29,7 +29,7 @@ vector<vector<int>> Model::read_tileSets() const
             tileSets.push_back(vector<int>());
         }
         
-        tileSets[idx_tile - 1].push_back(idx_node);
+        tileSets[idx_tile - 1].push_back(idx_node - 1);
     }
     
     return tileSets;

@@ -5,7 +5,7 @@
 //  Created by Michiel uit het Broek on 13/04/2022.
 //
 
-#include "main.h"
+#include "main.hpp"
 
 void model1()
 {

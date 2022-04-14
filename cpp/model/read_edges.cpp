@@ -22,7 +22,7 @@ vector<Model::Edge> Model::read_edges() const
     
     while (inFile >> from >> to >> dist)
     {
-        edges.emplace_back(Edge{from, to, dist});
+        edges.emplace_back(Edge{from - 1, to - 1, dist});
     }
     
     return edges;

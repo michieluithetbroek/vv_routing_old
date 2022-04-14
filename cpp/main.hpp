@@ -5,8 +5,7 @@
 //  Created by Michiel uit het Broek on 13/04/2022.
 //
 
-#ifndef main_h
-#define main_h
+#pragma once
 
 using namespace std;
 
@@ -20,5 +19,3 @@ using namespace std;
 
 void model1();
 
-
-#endif
