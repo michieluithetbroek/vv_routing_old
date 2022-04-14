@@ -17,22 +17,13 @@ Model::Model()
   d_x        (d_nNodes, vector<GRBVar>(d_nNodes, GRBVar())),
   d_u        (d_nNodes, GRBVar())
 {
-    try
-    {
     createVariables();
     createObjective();
     createConstraints();
     
-    // Where should Gurobi write its log output
-//    d_env.set("LogFile", "mip1.log");
-//    d_env.start();
-    
-        solve(20);
+    createConstraints_MTZ();
+       
+    solve(100);
         
-        printSolution();
-    }
-    catch (GRBException const &e)
-    {
-        cout << e.getMessage() << endl;
-    }
+    printSolution();
 }

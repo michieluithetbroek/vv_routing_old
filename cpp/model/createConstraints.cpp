@@ -24,13 +24,9 @@ void Model::createConstraints()
     }
     
     
-    
     // ---------------------------------
     // --- Visit each tile           ---
     // ---------------------------------
-    
-    // Each tile must have at least one incoming arc from
-    // a node outside the tile
     
     for (vector<int> const &tileSet: d_tileSets)
     {
@@ -43,5 +39,4 @@ void Model::createConstraints()
 
         d_model.addConstr(expr, GRB_GREATER_EQUAL, 1, "visit each tile");
     }
-    
 }

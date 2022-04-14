@@ -52,6 +52,8 @@ private:
     void createObjective();
     void createConstraints();
     
+    void createConstraints_MTZ();
+    
     // Helper functions
     
     bool edgeExists (int idx, int jdx) const;

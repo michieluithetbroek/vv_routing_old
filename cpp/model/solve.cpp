@@ -15,7 +15,7 @@ void Model::solve(int solvingTime)
     d_model.set (GRB_DoubleParam_TimeLimit,     solvingTime);   // g_timeLimit / 10);
     d_model.set (GRB_IntParam_PreCrush,         0);         // User callback
 
-    d_model.set (GRB_IntParam_Threads,          1);         // Number of threads
+    d_model.set (GRB_IntParam_Threads,          6);         // Number of threads
     d_model.set (GRB_DoubleParam_Heuristics,    1.0);
     d_model.set (GRB_IntParam_MIPFocus,         1);         // 1 = focus on solutions
     d_model.set (GRB_DoubleParam_MIPGap,        mipGap);
