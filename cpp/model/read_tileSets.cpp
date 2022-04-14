@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 14/04/2022.
 //
 
-#include "main.h"
+#include "model.ih"
 
-vector<vector<int>> read_tileSets()
+vector<vector<int>> Model::read_tileSets() const
 {
     ifstream inFile("/Users/michiel/Documents/github/vv_routing/data/1_tileSets");
     

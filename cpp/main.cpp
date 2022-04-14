@@ -5,20 +5,12 @@
 //  Created by Michiel uit het Broek on 13/04/2022.
 //
 
-#include "main.h"
+#include "main.hpp"
 
 int main(int argc, const char * argv[])
 try
 {
-    vector<Edge> edges = read_edges();
-    auto tileSets = read_tileSets();
-
-    for (auto v: tileSets)
-    {
-        for (auto v2: v)
-            cout << v2 << " ";
-        cout << endl;
-    }
+    Model m;
     
     std::cout << "Hello, World!\n";
     

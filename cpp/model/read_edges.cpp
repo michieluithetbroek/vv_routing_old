@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 14/04/2022.
 //
 
-#include "main.h"
+#include "model.ih"
 
-vector<Edge> read_edges()
+vector<Model::Edge> Model::read_edges() const
 {
     ifstream inFile("/Users/michiel/Documents/github/vv_routing/data/1_distance");
     
