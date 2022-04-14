@@ -37,14 +37,14 @@ class Model
     varArray  d_u;
     
 public:
-    Model();
+    Model(int idx_inst);
     
     void solve(int solvingTime);
     void printSolution() const;
     
 private:
-    std::vector<Edge> read_edges() const;
-    std::vector<std::vector<int>> read_tileSets() const;
+    std::vector<Edge> read_edges(int idx_inst) const;
+    std::vector<std::vector<int>> read_tileSets(int idx_inst) const;
     
     int get_nNodes() const;
     

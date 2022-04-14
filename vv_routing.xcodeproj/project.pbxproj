@@ -45,6 +45,8 @@
 		CC72CE102808B88400D1D8E2 /* createConstraints.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = createConstraints.cpp; sourceTree = "<group>"; };
 		CC72CE122808CE5800D1D8E2 /* printSolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = printSolution.cpp; sourceTree = "<group>"; };
 		CC72CE142808D70600D1D8E2 /* createConstraints_MTZ.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = createConstraints_MTZ.cpp; sourceTree = "<group>"; };
+		CC72CE162808E82700D1D8E2 /* 2_distance */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2_distance; sourceTree = "<group>"; };
+		CC72CE172808E82700D1D8E2 /* 2_tileSets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2_tileSets; sourceTree = "<group>"; };
 		CCB1812128073CAF00FF79D4 /* vv_routing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vv_routing; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB1812428073CAF00FF79D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CCB1812B28073E7300FF79D4 /* main.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
@@ -128,6 +130,8 @@
 		CCB181692808777000FF79D4 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				CC72CE162808E82700D1D8E2 /* 2_distance */,
+				CC72CE172808E82700D1D8E2 /* 2_tileSets */,
 				CCB1816D28087EC700FF79D4 /* 1_distance */,
 				CCB1816E28087EC700FF79D4 /* 1_tileSets */,
 			);

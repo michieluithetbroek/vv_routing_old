@@ -7,9 +7,13 @@
 
 #include "model.ih"
 
-vector<Model::Edge> Model::read_edges() const
+vector<Model::Edge> Model::read_edges(int idx_inst) const
 {
-    ifstream inFile("/Users/michiel/Documents/github/vv_routing/data/1_distance");
+    string const fileName = "/Users/michiel/Documents/github/vv_routing/data/"
+        + to_string(idx_inst)
+        + "_distance";
+    
+    ifstream inFile(fileName);
     
     if (not inFile.is_open())
         throw string("Could not open input file");

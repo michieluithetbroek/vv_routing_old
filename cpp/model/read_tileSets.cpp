@@ -7,9 +7,13 @@
 
 #include "model.ih"
 
-vector<vector<int>> Model::read_tileSets() const
+vector<vector<int>> Model::read_tileSets(int idx_inst) const
 {
-    ifstream inFile("/Users/michiel/Documents/github/vv_routing/data/1_tileSets");
+    string const fileName = "/Users/michiel/Documents/github/vv_routing/data/"
+        + to_string(idx_inst)
+        + "_tileSets";
+    
+    ifstream inFile(fileName);
     
     if (not inFile.is_open())
         throw string("Could not open input file");
