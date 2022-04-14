@@ -11,11 +11,23 @@
 using namespace std;
 
 #include <iostream>
+#include <fstream>
+
 #include <vector>
+
 
 #include "gurobi_c++.h"
 
+struct Edge
+{
+    int from;
+    int to;
+    double dist;
+};
 
 void model1();
+vector<Edge> read_edges();
+vector<vector<int>> read_tileSets();
+
 
 #endif
