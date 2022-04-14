@@ -8,6 +8,14 @@
 #ifndef main_h
 #define main_h
 
-#include <iostream>
+using namespace std;
 
-#endif /* main_h */
+#include <iostream>
+#include <vector>
+
+#include "gurobi_c++.h"
+
+
+void model1();
+
+#endif

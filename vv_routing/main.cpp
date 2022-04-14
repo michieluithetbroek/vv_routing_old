@@ -7,13 +7,10 @@
 
 #include "main.h"
 
-#include "gurobi_c++.h"
-
 int main(int argc, const char * argv[])
 {
-   
-    GRBEnv env = GRBEnv(true);
-    
+    model1();
+
     std::cout << "Hello, World!\n";
     return 0;
 }
