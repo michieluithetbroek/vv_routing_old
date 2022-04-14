@@ -10,5 +10,6 @@ using namespace std;
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 #include "model.hpp"
