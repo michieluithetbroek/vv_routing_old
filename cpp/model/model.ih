@@ -1,0 +1,14 @@
+//
+//  model.ih
+//  vv_routing
+//
+//  Created by Michiel uit het Broek on 14/04/2022.
+//
+
+using namespace std;
+
+#include <vector>
+#include <iostream>
+#include <fstream>
+
+#include "model.hpp"
