@@ -10,6 +10,18 @@
 void Model::printSolution() const
 {
     // --------------------------------------
+    // --- Nodes in tileSet 0             ---
+    // --------------------------------------
+    
+    cout << "\nTile set 0: ";
+    
+    for (int idx: d_tileSets[0])
+        cout << idx << " ";
+    cout << "\n\n";
+    
+    
+    
+    // --------------------------------------
     // --- Which nodes are visited?       ---
     // --------------------------------------
     
@@ -17,7 +29,7 @@ void Model::printSolution() const
     
     for (int idx = 0; idx < d_nNodes; ++idx)
         for (int jdx = 0; jdx < d_nNodes; ++jdx)
-            if (d_x[idx][jdx].get(GRB_DoubleAttr_X) > 0)
+            if (d_x[idx][jdx].get(GRB_DoubleAttr_X) > 0.01)
                 visitedNodes[jdx] = true;
     
     
@@ -37,30 +49,47 @@ void Model::printSolution() const
     
     
     // --------------------------------------
-    // --- Print route                    ---
+    // --- Print routes                   ---
     // --------------------------------------
     
-    int start_node = -1;
+    // Is a route traversing this node already printed?
     
-    while (not visitedNodes[++start_node]);
+    vector<bool> routePrinted(d_nNodes, false);
     
-    // There is a route that starts with node start_node
-    // Now we follow this route
+    // Our formulation does still allow multiple routes..
+    // We therefore consider each node as starting node of a route
     
-    int curr_node = start_node;
-    
-    cout << "Route:\n";
-    
-    do
+    for (int start_node = 0; start_node < d_nNodes; ++start_node)
     {
-        cout << curr_node << " ";
+        if (not visitedNodes[start_node])
+            continue;
         
-        int idx = -1;
-        while (d_x[curr_node][++idx].get(GRB_DoubleAttr_X) == 0);
+        if (routePrinted[start_node])
+            continue;
         
-        curr_node = idx;
+        // There is a route that traversing start_node
+        // This can be print routes twice because multiple
+        // nodes in a tile can be visited by a single route
         
-    } while (curr_node != start_node);
+        int curr_node = start_node;
+        
+        cout << "\n\nRoute:\n";
+        
+        int cnt = 40;
+        do
+        {
+            cout << curr_node << " ";
+            
+            routePrinted[curr_node] = true;
+            
+            int idx = -1;
+            while (d_x[curr_node][++idx].get(GRB_DoubleAttr_X) < 0.01);
+            
+            curr_node = idx;
+            --cnt;
+            
+        } while (curr_node != start_node && cnt >= 0);
+    }
     
     cout << "\n\nDistance: " << round(d_model.get(GRB_DoubleAttr_ObjVal) / 100) / 10 << " km\n" << endl;
     
