@@ -12,7 +12,14 @@ void Model::createVariables()
     // ---------------------------------------------------------
     // --- x_ij variables                                    ---
     // ---------------------------------------------------------
+ 
+    // Create dummy variables for non-existing arcs
+    // This makes modelling of the constraints much easier
     
+    for (int idx = 0; idx < d_nNodes; ++idx)
+        for (int jdx = 0; jdx < d_nNodes; ++jdx)
+            d_x[idx][jdx] = d_model.addVar(0.0, 0.0, 9999, GRB_BINARY, "dummy variable");
+
     for (Edge const &e: d_edges)
     {
         string name("x_" + to_string(e.from) + "_" + to_string(e.to));
@@ -20,13 +27,6 @@ void Model::createVariables()
         d_x[e.from][e.to] = d_model.addVar(0.0, 1.0, e.dist, GRB_BINARY, name.c_str());
     }
     
-    // Create dummy variables for non-existing arcs
-    // This makes modelling of the constraints much easier
-    
-    for (int idx = 0; idx < d_nNodes; ++idx)
-        for (int jdx = 0; jdx < d_nNodes; ++jdx)
-            if (not edgeExists(idx, jdx))
-                d_x[idx][jdx] = d_model.addVar(0.0, 0.0, 9999, GRB_BINARY, "dummy variable");
 
             
     
