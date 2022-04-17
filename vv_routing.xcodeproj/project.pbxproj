@@ -16,6 +16,10 @@
 		CC72CE132808CE5800D1D8E2 /* printSolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE122808CE5800D1D8E2 /* printSolution.cpp */; };
 		CC72CE152808D70600D1D8E2 /* createConstraints_MTZ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE142808D70600D1D8E2 /* createConstraints_MTZ.cpp */; };
 		CC72CE192809F1BD00D1D8E2 /* exportSolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE182809F1BD00D1D8E2 /* exportSolution.cpp */; };
+		CC72CE1D280C417A00D1D8E2 /* mycallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE1B280C417A00D1D8E2 /* mycallback.cpp */; };
+		CC72CE20280C427000D1D8E2 /* callback_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE1F280C427000D1D8E2 /* callback_user.cpp */; };
+		CC72CE22280C429F00D1D8E2 /* callback_lazy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE21280C429F00D1D8E2 /* callback_lazy.cpp */; };
+		CC72CE24280C43E800D1D8E2 /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE23280C43E800D1D8E2 /* callback.cpp */; };
 		CCB1812528073CAF00FF79D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCB1812428073CAF00FF79D4 /* main.cpp */; };
 		CCB18163280769D900FF79D4 /* libgurobi95.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB18161280769D900FF79D4 /* libgurobi95.dylib */; };
 		CCB18164280769D900FF79D4 /* libgurobi_c++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB18162280769D900FF79D4 /* libgurobi_c++.a */; };
@@ -49,6 +53,12 @@
 		CC72CE162808E82700D1D8E2 /* 2_distance */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2_distance; sourceTree = "<group>"; };
 		CC72CE172808E82700D1D8E2 /* 2_tileSets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2_tileSets; sourceTree = "<group>"; };
 		CC72CE182809F1BD00D1D8E2 /* exportSolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = exportSolution.cpp; sourceTree = "<group>"; };
+		CC72CE1B280C417A00D1D8E2 /* mycallback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mycallback.cpp; sourceTree = "<group>"; };
+		CC72CE1C280C417A00D1D8E2 /* mycallback.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mycallback.hpp; sourceTree = "<group>"; };
+		CC72CE1E280C419B00D1D8E2 /* mycallback.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = mycallback.ih; sourceTree = "<group>"; };
+		CC72CE1F280C427000D1D8E2 /* callback_user.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = callback_user.cpp; sourceTree = "<group>"; };
+		CC72CE21280C429F00D1D8E2 /* callback_lazy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = callback_lazy.cpp; sourceTree = "<group>"; };
+		CC72CE23280C43E800D1D8E2 /* callback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = callback.cpp; sourceTree = "<group>"; };
 		CCB1812128073CAF00FF79D4 /* vv_routing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vv_routing; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB1812428073CAF00FF79D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CCB1812B28073E7300FF79D4 /* main.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
@@ -76,6 +86,7 @@
 		CC72CE052808872D00D1D8E2 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				CC72CE25280C512E00D1D8E2 /* mycallback */,
 				CC72CE142808D70600D1D8E2 /* createConstraints_MTZ.cpp */,
 				CC72CE102808B88400D1D8E2 /* createConstraints.cpp */,
 				CC72CE0C2808AE7200D1D8E2 /* createObjective.cpp */,
@@ -90,6 +101,19 @@
 				CC72CE0E2808B29200D1D8E2 /* solve.cpp */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		CC72CE25280C512E00D1D8E2 /* mycallback */ = {
+			isa = PBXGroup;
+			children = (
+				CC72CE1C280C417A00D1D8E2 /* mycallback.hpp */,
+				CC72CE1B280C417A00D1D8E2 /* mycallback.cpp */,
+				CC72CE1E280C419B00D1D8E2 /* mycallback.ih */,
+				CC72CE1F280C427000D1D8E2 /* callback_user.cpp */,
+				CC72CE21280C429F00D1D8E2 /* callback_lazy.cpp */,
+				CC72CE23280C43E800D1D8E2 /* callback.cpp */,
+			);
+			path = mycallback;
 			sourceTree = "<group>";
 		};
 		CCB1811828073CAF00FF79D4 = {
@@ -201,11 +225,15 @@
 				CC72CE0D2808AE7200D1D8E2 /* createObjective.cpp in Sources */,
 				CC72CE082808874C00D1D8E2 /* model.cpp in Sources */,
 				CC72CE132808CE5800D1D8E2 /* printSolution.cpp in Sources */,
+				CC72CE20280C427000D1D8E2 /* callback_user.cpp in Sources */,
 				CCB1816B2808779F00FF79D4 /* read_edges.cpp in Sources */,
 				CC72CE0F2808B29200D1D8E2 /* solve.cpp in Sources */,
 				CCB1812528073CAF00FF79D4 /* main.cpp in Sources */,
 				CC72CE192809F1BD00D1D8E2 /* exportSolution.cpp in Sources */,
+				CC72CE1D280C417A00D1D8E2 /* mycallback.cpp in Sources */,
 				CC72CE0B2808A46200D1D8E2 /* createVariables.cpp in Sources */,
+				CC72CE24280C43E800D1D8E2 /* callback.cpp in Sources */,
+				CC72CE22280C429F00D1D8E2 /* callback_lazy.cpp in Sources */,
 				CC72CE042808832700D1D8E2 /* read_tileSets.cpp in Sources */,
 				CCB1816628076AF700FF79D4 /* model1.cpp in Sources */,
 				CC72CE152808D70600D1D8E2 /* createConstraints_MTZ.cpp in Sources */,
