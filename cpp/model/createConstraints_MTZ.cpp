@@ -9,6 +9,23 @@
 
 void Model::createConstraints_MTZ()
 {
+    // ---------------------------------------------------------
+    // --- u_i variables                                     ---
+    // ---------------------------------------------------------
+    
+    for (int idx = 0; idx < d_nNodes; ++idx)
+    {
+      string name("u_" + to_string(idx));
+        
+      d_u[idx] = d_model.addVar(0, d_nNodes, 0.0, GRB_CONTINUOUS, name.c_str());
+    }
+    
+    
+    
+    // ---------------------------------------------------------
+    // --- MTZ constraints                                   ---
+    // ---------------------------------------------------------
+    
     vector<int> tileSet = d_tileSets[0];
     
     for (int i = 1; i < d_nNodes; ++i)
@@ -24,5 +41,3 @@ void Model::createConstraints_MTZ()
         }
     }
 }
-
-//341080 322456 10602.0875   45    6 13858.6000 10502.2200  24.2%  15.5  100s
