@@ -7,10 +7,11 @@
 
 #include "model.ih"
 
-Model::Model(int idx_inst)
+Model::Model(int idx_inst, int runtime)
 :
   d_edges    (read_edges(idx_inst)),
   d_tileSets (read_tileSets(idx_inst)),
+  d_idx_inst (idx_inst),
   d_nNodes   (get_nNodes()),
   d_env      (),
   d_model    (d_env),
@@ -23,7 +24,8 @@ Model::Model(int idx_inst)
     
     createConstraints_MTZ();
        
-    solve(100);
+    solve(runtime);
         
     printSolution();
+    exportSolution();
 }

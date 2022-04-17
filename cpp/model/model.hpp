@@ -26,6 +26,7 @@ class Model
     std::vector<Edge>             const d_edges;
     std::vector<std::vector<int>> const d_tileSets;
     
+    int const d_idx_inst;
     int const d_nNodes;
     
     // Gurobi variables
@@ -37,10 +38,12 @@ class Model
     varArray  d_u;
     
 public:
-    Model(int idx_inst);
+    Model(int idx_inst, int runtime);
     
     void solve(int solvingTime);
     void printSolution() const;
+    
+    void exportSolution() const;
     
 private:
     std::vector<Edge> read_edges(int idx_inst) const;

@@ -20,6 +20,20 @@ void Model::printSolution() const
     cout << "\n\n";
     
     
+    // --------------------------------------
+    // --- Nodes in tileSet 0             ---
+    // --------------------------------------
+    
+    cout << "Traversed arcs:\n";
+    
+    for (int idx = 0; idx < d_nNodes; ++idx)
+        for (int jdx = 0; jdx < d_nNodes; ++jdx)
+            if (d_x[idx][jdx].get(GRB_DoubleAttr_X) > 0.5)
+                cout << setw(4) << idx << " " << setw(5) << jdx << endl;
+    
+    cout << endl;
+    
+    
     
     // --------------------------------------
     // --- Which nodes are visited?       ---
@@ -29,7 +43,7 @@ void Model::printSolution() const
     
     for (int idx = 0; idx < d_nNodes; ++idx)
         for (int jdx = 0; jdx < d_nNodes; ++jdx)
-            if (d_x[idx][jdx].get(GRB_DoubleAttr_X) > 0.01)
+            if (d_x[idx][jdx].get(GRB_DoubleAttr_X) > 0.5)
                 visitedNodes[jdx] = true;
     
     
@@ -83,7 +97,7 @@ void Model::printSolution() const
             routePrinted[curr_node] = true;
             
             int idx = -1;
-            while (d_x[curr_node][++idx].get(GRB_DoubleAttr_X) < 0.01);
+            while (d_x[curr_node][++idx].get(GRB_DoubleAttr_X) < 0.5);
             
             curr_node = idx;
             --cnt;
