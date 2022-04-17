@@ -10,7 +10,7 @@
 int main()
 try
 {
-    Model m(2);
+    Model m(2, 500);
     
     return 0;
 }

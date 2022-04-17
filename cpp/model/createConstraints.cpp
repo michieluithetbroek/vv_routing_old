@@ -10,6 +10,32 @@
 void Model::createConstraints()
 {
     // ---------------------------------
+    // --- Enter node at most once   ---
+    // ---------------------------------
+    
+    for (int idx = 0; idx < d_nNodes; ++idx)
+    {
+        GRBLinExpr expr = 0;
+
+        for (int jdx = 0; jdx < d_nNodes; ++jdx)
+            expr += d_x[jdx][idx];
+
+      d_model.addConstr(expr, GRB_LESS_EQUAL, 1, "Enter node at most once");
+    }
+    
+    for (int idx = 0; idx < d_nNodes; ++idx)
+    {
+        GRBLinExpr expr = 0;
+
+        for (int jdx = 0; jdx < d_nNodes; ++jdx)
+            expr += d_x[idx][jdx];
+
+      d_model.addConstr(expr, GRB_LESS_EQUAL, 1, "Leave node at most once");
+    }
+    
+    
+    
+    // ---------------------------------
     // --- Flow conservation         ---
     // ---------------------------------
     
