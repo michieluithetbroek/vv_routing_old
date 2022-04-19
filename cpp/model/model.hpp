@@ -16,6 +16,7 @@ using numMatrix = std::vector<vector<double>>;
 
 class Model
 {
+public:
     struct Edge
     {
         int from;
@@ -44,6 +45,9 @@ public:
     void printSolution() const;
     
     void exportSolution() const;
+    
+    int nextNode (std::vector<std::vector<double>> const &x, int const curr_node) const;
+    
     
 private:
     std::vector<Edge> read_edges(int idx_inst) const;
@@ -91,4 +95,12 @@ inline bool Model::inTile (int idx_node, vector<int> const &tileSet) const
             return true;
     
     return false;
+}
+
+inline int Model::nextNode (std::vector<std::vector<double>> const &x, int const curr_node) const
+{
+    int idx = -1;
+    while (x[curr_node][++idx] < 0.5);
+    
+    return idx;
 }

@@ -22,7 +22,7 @@ Model::Model(int idx_inst, int runtime)
     createObjective();
     createConstraints();
     
-    createConstraints_MTZ();
+//    createConstraints_MTZ();
        
     solve(runtime);
         

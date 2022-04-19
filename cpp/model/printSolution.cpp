@@ -82,7 +82,7 @@ void Model::printSolution() const
             continue;
         
         // There is a route that traversing start_node
-        // This can be print routes twice because multiple
+        // This function can print routes twice because multiple
         // nodes in a tile can be visited by a single route
         
         int curr_node = start_node;
