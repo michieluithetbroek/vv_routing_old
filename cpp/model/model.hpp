@@ -49,6 +49,7 @@ public:
     int nextNode (std::vector<std::vector<double>> const &x, int const curr_node) const;
     
     
+    
 private:
     std::vector<Edge> read_edges(int idx_inst) const;
     std::vector<std::vector<int>> read_tileSets(int idx_inst) const;
@@ -59,6 +60,7 @@ private:
     void createObjective();
     void createConstraints();
     
+    void createConstraints_oneWay();
     void createConstraints_MTZ();
     
     // Helper functions

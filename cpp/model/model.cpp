@@ -22,6 +22,8 @@ Model::Model(int idx_inst, int runtime)
     createObjective();
     createConstraints();
     
+    createConstraints_oneWay();
+    
 //    createConstraints_MTZ();
        
     solve(runtime);
