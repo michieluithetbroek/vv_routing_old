@@ -42,7 +42,9 @@ public:
     Model(int idx_inst, int runtime);
     
     void solve(int solvingTime);
+    
     void printSolution() const;
+    void printTileData() const;
     
     void exportSolution() const;
     
@@ -62,6 +64,8 @@ private:
     
     void createConstraints_oneWay();
     void createConstraints_MTZ();
+    
+    void setInitialSolution();
     
     // Helper functions
     
