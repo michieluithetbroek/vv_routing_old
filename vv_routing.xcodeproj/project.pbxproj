@@ -59,6 +59,7 @@
 		CC72CE1F280C427000D1D8E2 /* callback_user.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = callback_user.cpp; sourceTree = "<group>"; };
 		CC72CE21280C429F00D1D8E2 /* callback_lazy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = callback_lazy.cpp; sourceTree = "<group>"; };
 		CC72CE23280C43E800D1D8E2 /* callback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = callback.cpp; sourceTree = "<group>"; };
+		CC72CE26280C893F00D1D8E2 /* notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = notes.md; sourceTree = "<group>"; };
 		CCB1812128073CAF00FF79D4 /* vv_routing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vv_routing; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB1812428073CAF00FF79D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CCB1812B28073E7300FF79D4 /* main.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 				CCB1816528076AF700FF79D4 /* model1.cpp */,
 				CCB1812428073CAF00FF79D4 /* main.cpp */,
 				CCB1812B28073E7300FF79D4 /* main.hpp */,
+				CC72CE26280C893F00D1D8E2 /* notes.md */,
 			);
 			path = cpp;
 			sourceTree = "<group>";

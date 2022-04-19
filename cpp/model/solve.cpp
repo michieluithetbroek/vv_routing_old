@@ -12,7 +12,7 @@ void Model::solve(int solvingTime)
     double mipGap  = 0.05;
   
     d_model.set (GRB_DoubleParam_TimeLimit,     solvingTime);   // g_timeLimit / 10);
-    d_model.set (GRB_IntParam_PreCrush,         0);         // User callback
+    d_model.set (GRB_IntParam_PreCrush,         0);         // consider 1 when adding user constraints
     d_model.set (GRB_IntParam_LazyConstraints,  1);         // must be 1 if lazy constraints are added
 
     d_model.set (GRB_IntParam_Threads,          4);         // Number of threads
