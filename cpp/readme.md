@@ -5,6 +5,8 @@
 ## Programming
 
 ### To do
+- Print tile data
+- Correct tile input data
 - Allow to set initial solution
 - Reduces number of nodes on tiles
 - Link CVRPSEP
