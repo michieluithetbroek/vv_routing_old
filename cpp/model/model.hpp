@@ -73,9 +73,20 @@ private:
     
     bool edgeExists (int idx, int jdx) const;
     bool inTile (int idx_node, vector<int> const &tileSet) const;
+    
+    double getCost (int idx_from, int idx_to) const;
 };
 
-
+inline double Model::getCost (int idx_from, int idx_to) const
+{
+    for (Edge const &e: d_edges)
+        if (e.from == idx_from && e.to == idx_to)
+            return e.dist;
+    
+    cout << idx_from << " - " << idx_to << endl;
+    
+    throw string("Model::getCost - Edge does not exist");
+}
 
 inline int Model::get_nNodes() const
 {
