@@ -18,7 +18,7 @@ Model::Model(int idx_inst, int runtime)
   d_x        (d_nNodes, vector<GRBVar>(d_nNodes, GRBVar())),
   d_u        (d_nNodes, GRBVar())
 {
-    printTileData();
+//    printTileData();
     
     createVariables();
     createObjective();
@@ -26,7 +26,7 @@ Model::Model(int idx_inst, int runtime)
     
     createConstraints_oneWay();
     
-//    createConstraints_MTZ();
+    createConstraints_MTZ();
        
     setInitialSolution();
     

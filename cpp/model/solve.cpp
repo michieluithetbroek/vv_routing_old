@@ -15,8 +15,8 @@ void Model::solve(int solvingTime)
     d_model.set (GRB_IntParam_PreCrush,         0);         // consider 1 when adding user constraints
     d_model.set (GRB_IntParam_LazyConstraints,  1);         // must be 1 if lazy constraints are added
 
-    d_model.set (GRB_IntParam_Threads,          4);         // Number of threads
-    d_model.set (GRB_DoubleParam_Heuristics,    0.10);      // weight on finding heuristic solutions (1 = max)
+    d_model.set (GRB_IntParam_Threads,          6);         // Number of threads
+    d_model.set (GRB_DoubleParam_Heuristics,    0.99);      // weight on finding heuristic solutions (1 = max)
     d_model.set (GRB_IntParam_MIPFocus,         1);         // 1 = focus on solutions, 3 = focus on bound
     d_model.set (GRB_DoubleParam_MIPGap,        mipGap);
     d_model.set (GRB_IntParam_OutputFlag,       1);         // 0 = no terminal output

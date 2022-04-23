@@ -10,7 +10,7 @@
 int main()
 try
 {
-    Model m(1, 100);
+    Model m(1 , 5 * 60);
     
     return 0;
 }
