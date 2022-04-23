@@ -67,6 +67,8 @@ private:
     
     void setInitialSolution();
     
+    int getNodeFromTile(int idx_tile) const;
+    
     // Helper functions
     
     bool edgeExists (int idx, int jdx) const;
