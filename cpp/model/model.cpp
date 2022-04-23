@@ -28,7 +28,7 @@ Model::Model(int idx_inst, int runtime)
     
 //    createConstraints_MTZ();
        
-    
+    setInitialSolution();
     
     solve(runtime);
         

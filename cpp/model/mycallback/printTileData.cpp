@@ -20,6 +20,4 @@ void Model::printTileData() const
         
         cout << endl;
     }
-    
-    throw;
 }
