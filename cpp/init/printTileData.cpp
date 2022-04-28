@@ -9,9 +9,9 @@
 
 void Init::printTileData() const
 {
-    for (int idx = 0; idx < size(d_tileSets); ++idx)
+    for (int idx = 0; idx < d_nTileSets; ++idx)
     {
-        auto const &tile = d_tileSets[idx];
+        auto const &tile = d_tileSets_perTile[idx];
         
         cout << "Tile " << setw(2) << idx << " - ";
         
@@ -20,4 +20,9 @@ void Init::printTileData() const
         
         cout << endl;
     }
+    
+    for (int idx_node = 0; idx_node < d_nNodes; ++idx_node)
+        cout << setw(5) << idx_node << " " << setw(5) << d_tileSets_perNode[idx_node] << endl;
+    
+    
 }

@@ -16,5 +16,7 @@ Init::Init(int idx_inst)
     read_tileSets();
     
     set_nNodes();
+    
+    create_tileSet_perNode();
     create_costMatrix();
 }

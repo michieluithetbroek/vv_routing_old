@@ -10,15 +10,11 @@
 
 ALNS::ALNS(Init const init)
 :
-  d_nNodes    (init.nNodes()),
-  d_nTiles    (init.nTileSets()),
-  d_cost      (init.cost()),
-  d_tileSets  (init.tileSets())
+  d_nNodes           (init.nNodes()),
+  d_nTiles           (init.nTileSets()),
+  d_cost             (init.cost()),
+  d_tileSets_perTile (init.tileSets()),
+  d_tileSets_perNode (init.tileSets_perNode())
 {
-    for (auto &v: d_cost)
-    {
-        for (auto v2: v)
-            cout << setw(5) << v2 << " ";
-        cout << endl;
-    }
+
 }

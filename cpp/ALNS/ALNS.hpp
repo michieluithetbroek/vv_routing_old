@@ -13,14 +13,22 @@
 #include "init.hpp"
 
 
+
 class ALNS
 {
+    // Input data
+    
     int const d_nNodes;
     int const d_nTiles;
     
     std::vector<std::vector<double>> const d_cost;
+    std::vector<std::vector<int>> const d_tileSets_perTile;
     
-    std::vector<std::vector<int>> const d_tileSets;
+    std::vector<int> const d_tileSets_perNode;
+    
+    // Solution
+    
+    std::vector<int> d_route;
     
 public:
     ALNS(Init const init);

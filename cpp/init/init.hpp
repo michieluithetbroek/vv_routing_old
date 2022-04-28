@@ -25,7 +25,9 @@ class Init
     std::vector<Edge> d_edges;
     
     std::vector<std::vector<double>> d_cost;
-    std::vector<std::vector<int>> d_tileSets;
+    
+    std::vector<std::vector<int>> d_tileSets_perTile;
+    std::vector<int> d_tileSets_perNode;
     
     std::string d_filePath;
     
@@ -49,6 +51,8 @@ public:
     
     std::vector<Edge> edges() const;
     std::vector<std::vector<int>> tileSets() const;
+    std::vector<int> tileSets_perNode() const;
+    
     std::vector<std::vector<double>> cost() const;
     
     // Print data
@@ -59,7 +63,8 @@ private:
     void read_edges();
     void read_tileSets();
     void set_nNodes();
-    
+
+    void create_tileSet_perNode();
     void create_costMatrix();
 };
 
@@ -90,7 +95,12 @@ inline std::vector<Edge> Init::edges() const
 
 inline std::vector<std::vector<int>> Init::tileSets() const
 {
-    return d_tileSets;
+    return d_tileSets_perTile;
+}
+
+inline std::vector<int> Init::tileSets_perNode() const
+{
+    return d_tileSets_perNode;
 }
 
 inline std::vector<std::vector<double>> Init::cost() const
