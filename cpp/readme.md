@@ -5,6 +5,7 @@
 ## Programming
 
 ### To do
+- Separete init class for reading data
 - Print tile data
 - Correct tile input data
 - Allow to set initial solution

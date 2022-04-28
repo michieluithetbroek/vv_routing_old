@@ -13,6 +13,7 @@ using namespace std;
 #include <fstream>
 #include <vector>
 
+#include "init/init.hpp"
 #include "model/model.hpp"
 
 #include "gurobi_c++.h"

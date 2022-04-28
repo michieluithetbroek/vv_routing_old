@@ -1,0 +1,16 @@
+//
+//  init.h
+//  vv_routing
+//
+//  Created by Michiel uit het Broek on 28/04/2022.
+//
+
+#pragma once
+
+using namespace std;
+
+#include "init.hpp"
+
+#include <iostream>
+#include <fstream>
+
