@@ -30,11 +30,23 @@ class Init
     std::string d_filePath;
     
     int d_nNodes;
-    int d_nTilesX;
-    int d_nTilesY;
+    int d_nTilesX = -1;
+    int d_nTilesY = -1;
     
 public:
+    
     Init(int idx_inst);
+    
+    // Getters
+    
+    int nNodes() const;
+    int nTilesX() const;
+    int nTilesY() const;
+    
+    std::vector<Edge> edges() const;
+    std::vector<std::vector<int>> tileSets() const;
+    std::vector<std::vector<double>> cost() const;
+    
     
 private:
     void read_edges();
@@ -43,3 +55,33 @@ private:
     
     void create_costMatrix();
 };
+
+inline int Init::nNodes() const
+{
+    return d_nNodes;
+}
+
+inline int Init::nTilesX() const
+{
+    return d_nTilesX;
+}
+
+inline int Init::nTilesY() const
+{
+    return d_nTilesY;
+}
+
+inline std::vector<Edge> Init::edges() const
+{
+    return d_edges;
+}
+
+inline std::vector<std::vector<int>> Init::tileSets() const
+{
+    return d_tileSets;
+}
+
+inline std::vector<std::vector<double>> Init::cost() const
+{
+    return d_cost;
+}
