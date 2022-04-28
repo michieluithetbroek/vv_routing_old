@@ -14,6 +14,7 @@ using namespace std;
 #include <vector>
 
 #include "init/init.hpp"
+#include "ALNS/ALNS.hpp"
 #include "model/model.hpp"
 
 #include "gurobi_c++.h"

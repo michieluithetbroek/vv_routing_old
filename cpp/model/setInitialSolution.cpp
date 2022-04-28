@@ -14,11 +14,13 @@
 
 void Model::setInitialSolution()
 {
-    srand ((unsigned int)time(NULL));
+    int seed1 = 1; //std::chrono::system_clock::now().time_since_epoch().count();
+
+    std::mt19937_64 gen (seed1);
     
     cout << "\nSet initial solution\n" << endl;
 
-    int const nRep = 1000;
+    int const nRep = 2000;
     bool const reversePaths = true;
     
     
@@ -71,7 +73,7 @@ void Model::setInitialSolution()
         {
             vector<int> path_nodes;
         
-            int idx_from = getNodeFromTile(path[0]);
+            int idx_from = getNodeFromTile(path[0], gen);
         
             path_nodes.push_back(idx_from);
         
@@ -86,9 +88,9 @@ void Model::setInitialSolution()
                 int idx_to = -1;
                 
                 while (not edgeExists(idx_from, idx_to) and --maxTries > 0)
-                    idx_to = getNodeFromTile(idx_tile);
+                    idx_to = getNodeFromTile(idx_tile, gen);
                 
-                if (maxTries <= 0 or idx_from == idx_to)
+                if (maxTries <= 0)
                     failed = true;
                 
                 if (failed)
