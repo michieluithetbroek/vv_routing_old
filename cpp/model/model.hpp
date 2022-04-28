@@ -8,6 +8,10 @@
 #pragma once
 
 #include <vector>
+#include <random>
+
+#include "./../init/init.hpp"
+
 #include "gurobi_c++.h"
 
 using varMatrix = std::vector<vector<GRBVar>>;
@@ -17,18 +21,12 @@ using numMatrix = std::vector<vector<double>>;
 class Model
 {
 public:
-    struct Edge
-    {
-        int from;
-        int to;
-        double dist;
-    };
         
-    std::vector<Edge>             const d_edges;
-    std::vector<std::vector<int>> const d_tileSets;
-    
     int const d_idx_inst;
     int const d_nNodes;
+    
+    std::vector<Edge>             const d_edges;
+    std::vector<std::vector<int>> const d_tileSets;
     
     // Gurobi variables
     
@@ -39,13 +37,12 @@ public:
     varArray  d_u;
     
 public:
-    Model(int idx_inst, int runtime);
+    Model(Init const init, int runtime);
     
     void solve(int solvingTime);
     
     void printSolution() const;
-    void printTileData() const;
-    
+
     void exportSolution() const;
     
     int nextNode (std::vector<std::vector<double>> const &x, int const curr_node) const;
@@ -53,11 +50,6 @@ public:
     
     
 private:
-    std::vector<Edge> read_edges(int idx_inst) const;
-    std::vector<std::vector<int>> read_tileSets(int idx_inst) const;
-    
-    int get_nNodes() const;
-    
     void createVariables();
     void createObjective();
     void createConstraints();
@@ -67,7 +59,7 @@ private:
     
     void setInitialSolution();
     
-    int getNodeFromTile(int idx_tile) const;
+    int getNodeFromTile(int idx_tile, std::mt19937_64 &gen) const;
     
     // Helper functions
     
@@ -86,16 +78,6 @@ inline double Model::getCost (int idx_from, int idx_to) const
     cout << idx_from << " - " << idx_to << endl;
     
     throw string("Model::getCost - Edge does not exist");
-}
-
-inline int Model::get_nNodes() const
-{
-    int maxVal = 0;
-    
-    for (Edge const &e: d_edges)
-        maxVal = max(maxVal, max(e.from, e.to));
-        
-    return maxVal + 1;
 }
 
 inline bool Model::edgeExists (int idx, int jdx) const

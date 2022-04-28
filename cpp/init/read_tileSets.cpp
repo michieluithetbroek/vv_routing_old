@@ -9,7 +9,7 @@
 
 void Init::read_tileSets()
 {
-    ifstream inFile(d_filePath);
+    ifstream inFile(d_filePath + "_tileSets");
     
     if (not inFile.is_open())
         throw string("Could not open input file");
@@ -25,8 +25,8 @@ void Init::read_tileSets()
         if (idx_tile > curr_tile)
         {
             if (curr_tile > 0)
-              tileSets[curr_tile - 1].shrink_to_fit();
-            
+                tileSets[curr_tile - 1].shrink_to_fit();
+                
             ++curr_tile;
             
             tileSets.push_back(vector<int>());

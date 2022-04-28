@@ -2,12 +2,12 @@
 //  printTileData.cpp
 //  vv_routing
 //
-//  Created by Michiel uit het Broek on 19/04/2022.
+//  Created by Michiel uit het Broek on 28/04/2022.
 //
 
-#include "model.ih"
+#include "init.ih"
 
-void Model::printTileData() const
+void Init::printTileData() const
 {
     for (int idx = 0; idx < size(d_tileSets); ++idx)
     {

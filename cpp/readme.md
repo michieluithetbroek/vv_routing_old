@@ -6,6 +6,7 @@
 
 ### To do
 - Separete init class for reading data
+- Move Edge definition outside Init class
 - Print tile data
 - Correct tile input data
 - Allow to set initial solution

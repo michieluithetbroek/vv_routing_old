@@ -47,6 +47,9 @@ public:
     std::vector<std::vector<int>> tileSets() const;
     std::vector<std::vector<double>> cost() const;
     
+    // Print data
+    
+    void printTileData() const;
     
 private:
     void read_edges();

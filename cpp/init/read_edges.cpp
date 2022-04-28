@@ -9,7 +9,7 @@
 
 void Init::read_edges()
 {
-    ifstream inFile(d_filePath);
+    ifstream inFile(d_filePath + "_distance");
     
     if (not inFile.is_open())
         throw string("Could not open input file");
