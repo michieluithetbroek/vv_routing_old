@@ -14,12 +14,6 @@ Init::Init(int idx_inst)
 {
     read_edges();
     read_tileSets();
-
-    cout << "Init constructor" << endl;
-    
-    printTileData();
-    
-    cout << "Init constructor" << endl;
     
     set_nNodes();
     create_costMatrix();

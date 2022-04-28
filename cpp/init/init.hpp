@@ -30,6 +30,8 @@ class Init
     std::string d_filePath;
     
     int d_nNodes;
+    int d_nTileSets;
+    
     int d_nTilesX = -1;
     int d_nTilesY = -1;
     
@@ -40,6 +42,8 @@ public:
     // Getters
     
     int nNodes() const;
+    int nTileSets() const;
+    
     int nTilesX() const;
     int nTilesY() const;
     
@@ -62,6 +66,11 @@ private:
 inline int Init::nNodes() const
 {
     return d_nNodes;
+}
+
+inline int Init::nTileSets() const
+{
+    return d_nTileSets;
 }
 
 inline int Init::nTilesX() const

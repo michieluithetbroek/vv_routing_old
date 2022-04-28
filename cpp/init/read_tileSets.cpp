@@ -37,5 +37,6 @@ void Init::read_tileSets()
     
     tileSets.shrink_to_fit();
     
-    d_tileSets = tileSets;
+    d_tileSets  = tileSets;
+    d_nTileSets = static_cast<int>(size(d_tileSets));
 }
