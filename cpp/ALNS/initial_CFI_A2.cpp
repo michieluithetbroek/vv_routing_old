@@ -12,31 +12,25 @@
 
 void ALNS::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 1000000;
+    int const nRep = 2 * 150000;
     
     double bestCost = numeric_limits<double>::max();
     
     random_device dev;
     mt19937 generator (dev());
     
+    uniform_int_distribution<int> dis(0, d_nNodes - 1);
+    
     for (int idx_rep = 0; idx_rep < nRep; ++idx_rep)
     {
-        
         // ---------------------------------------------------
         // --- Select random start node                    ---
         // ---------------------------------------------------
         
-        uniform_int_distribution<int> dis(0, d_nNodes - 1);
-        
         int const start_node = dis(generator);
         
-        vector<int> route(2, -1);
-        vector<bool> tileVisited(d_nTiles, false);
-        
-        route[0] = start_node;
-        route[1] = start_node;
-        
-        tileVisited[d_tileSets_perNode[start_node]] = true;
+        vector<int> route({start_node, start_node});
+        route.reserve(d_nTiles + 1);
         
         
         
@@ -44,44 +38,31 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
         // --- Generate random order of remaining tiles    ---
         // ---------------------------------------------------
         
+        int const exclude_tile = d_tileSets_perNode[start_node];
+        
         vector<int> indices_tiles;
         indices_tiles.reserve(d_nTiles - 1);
-        
-        int const exclude_tile = d_tileSets_perNode[start_node];
         
         for (int idx_tile = 0; idx_tile < d_nTiles; ++idx_tile)
             if (idx_tile != exclude_tile)
                 indices_tiles.push_back(idx_tile);
-        
+
         shuffle(begin(indices_tiles), end(indices_tiles), generator);
         
         
         
         // ---------------------------------------------------
-        // --- Find cheapest insertion                     ---
+        // --- Find cheapest insertion for each tile       ---
         // ---------------------------------------------------
-        
-        
-        
-        for (int idx_iter = 0; idx_iter < d_nTiles - 1; ++idx_iter)
+           
+        for (int const idx_tile: indices_tiles)
         {
             double bestInsertCost = numeric_limits<double>::max();
             int bestInsert = -1;
             int bestNode   = -1;
             
-            
-            
-            // Which node to insert
-            
-            auto const &tileSet = d_tileSets_perTile[indices_tiles[idx_iter]];
-            
-            for (int const idx_node: tileSet)
+            for (int const idx_node: d_tileSets_perTile[idx_tile])
             {
-                if (tileVisited[d_tileSets_perNode[idx_node]])
-                    continue;
-                
-                // Where to insert
-            
                 for (int idx_insert = 0; idx_insert < size(route) - 1; ++idx_insert)
                 {
                     int const idx_from = route[idx_insert];
@@ -101,9 +82,9 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
             }
             
             route.insert(begin(route) + bestInsert + 1, bestNode);
-            
-            tileVisited[d_tileSets_perNode[bestNode]] = true;
         }
+        
+        
         
         // --------------------------------------------
         // --- Compute costs                        ---
@@ -128,13 +109,11 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
             cout << "A2 "
                  << setw(5)  << idx_rep << " "
                  << setw(10) << cost << " | ";
-            
+
             if (printRoutes)
                 for (int v: route)
                     cout << v << " ";
             cout << endl;
         }
     }
-    
-    cout << endl;
 }

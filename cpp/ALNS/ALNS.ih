@@ -7,8 +7,10 @@
 
 #include "ALNS.hpp"
 
-using namespace std;
-
 #include <iostream>
 #include <iomanip>
 #include <random>
+#include <chrono>
+
+using namespace std;
+using namespace chrono;
