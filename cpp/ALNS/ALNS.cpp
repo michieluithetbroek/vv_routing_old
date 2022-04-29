@@ -16,5 +16,12 @@ ALNS::ALNS(Init const init)
   d_tileSets_perTile (init.tileSets()),
   d_tileSets_perNode (init.tileSets_perNode())
 {
+    cout << fixed << setprecision(0);
+    
+    bool const printRoutes = false;
+    
+    initial_random(printRoutes);
 
+    initial_CFI_A(printRoutes);
+    initial_CFI_B(printRoutes);
 }

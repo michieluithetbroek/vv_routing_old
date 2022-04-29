@@ -22,13 +22,20 @@ class ALNS
     int const d_nTiles;
     
     std::vector<std::vector<double>> const d_cost;
-    std::vector<std::vector<int>> const d_tileSets_perTile;
     
-    std::vector<int> const d_tileSets_perNode;
+    std::vector<std::vector<int>> const d_tileSets_perTile;
+    std::vector<int>              const d_tileSets_perNode;
     
     // Solution
     
+    double d_currCost;
     std::vector<int> d_route;
+    
+    // Initial solutions
+    
+    void initial_random (bool const printRoutes);
+    void initial_CFI_A  (bool const printRoutes);
+    void initial_CFI_B  (bool const printRoutes);
     
 public:
     ALNS(Init const init);
