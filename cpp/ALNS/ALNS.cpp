@@ -20,8 +20,9 @@ ALNS::ALNS(Init const init)
     
     bool const printRoutes = false;
     
-    initial_random(printRoutes);
+//    initial_random(printRoutes);
 
-    initial_CFI_A(printRoutes);
-    initial_CFI_B(printRoutes);
+    initial_CFI_A  (printRoutes);
+    initial_CFI_A2 (printRoutes);
+    initial_CFI_B  (printRoutes);
 }

@@ -35,6 +35,7 @@ class ALNS
     
     void initial_random (bool const printRoutes);
     void initial_CFI_A  (bool const printRoutes);
+    void initial_CFI_A2 (bool const printRoutes);
     void initial_CFI_B  (bool const printRoutes);
     
 public:

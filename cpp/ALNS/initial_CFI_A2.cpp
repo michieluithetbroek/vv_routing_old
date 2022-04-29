@@ -1,18 +1,18 @@
 //
-//  initial_CFI.cpp
+//  initial_CFI_A2.cpp
 //  vv_routing
 //
 // Select a random starting node. Then insert cheapest insertion
-// where we only allow nodes from tiles that are not visited yet
+// where we only allow a node from a randomly selected tile
 //
-//  Created by Michiel uit het Broek on 28/04/2022.
+//  Created by Michiel uit het Broek on 29/04/2022.
 //
 
 #include "ALNS.ih"
 
-void ALNS::initial_CFI_A(bool const printRoutes)
+void ALNS::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 15000;
+    int const nRep = 1000000;
     
     double bestCost = numeric_limits<double>::max();
     
@@ -39,9 +39,29 @@ void ALNS::initial_CFI_A(bool const printRoutes)
         tileVisited[d_tileSets_perNode[start_node]] = true;
         
         
+        
+        // ---------------------------------------------------
+        // --- Generate random order of remaining tiles    ---
+        // ---------------------------------------------------
+        
+        vector<int> indices_tiles;
+        indices_tiles.reserve(d_nTiles - 1);
+        
+        int const exclude_tile = d_tileSets_perNode[start_node];
+        
+        for (int idx_tile = 0; idx_tile < d_nTiles; ++idx_tile)
+            if (idx_tile != exclude_tile)
+                indices_tiles.push_back(idx_tile);
+        
+        shuffle(begin(indices_tiles), end(indices_tiles), generator);
+        
+        
+        
         // ---------------------------------------------------
         // --- Find cheapest insertion                     ---
         // ---------------------------------------------------
+        
+        
         
         for (int idx_iter = 0; idx_iter < d_nTiles - 1; ++idx_iter)
         {
@@ -49,9 +69,13 @@ void ALNS::initial_CFI_A(bool const printRoutes)
             int bestInsert = -1;
             int bestNode   = -1;
             
+            
+            
             // Which node to insert
             
-            for (int idx_node = 0; idx_node < d_nNodes; ++idx_node)
+            auto const &tileSet = d_tileSets_perTile[indices_tiles[idx_iter]];
+            
+            for (int const idx_node: tileSet)
             {
                 if (tileVisited[d_tileSets_perNode[idx_node]])
                     continue;
@@ -101,7 +125,7 @@ void ALNS::initial_CFI_A(bool const printRoutes)
         {
             bestCost = cost;
             
-            cout << "A "
+            cout << "A2 "
                  << setw(5)  << idx_rep << " "
                  << setw(10) << cost << " | ";
             
