@@ -61,7 +61,11 @@ public:
     
 private:
     void read_edges();
-    void read_tileSets();
+    void read_distances();
+    
+    void read_tileSets_long();
+    void read_tileSets_short();
+    
     void set_nNodes();
 
     void create_tileSet_perNode();

@@ -7,7 +7,7 @@
 
 #include "init.ih"
 
-void Init::read_tileSets()
+void Init::read_tileSets_long()
 {
     ifstream inFile(d_filePath + "_tileSets");
     
