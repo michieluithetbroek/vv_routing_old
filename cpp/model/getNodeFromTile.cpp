@@ -7,11 +7,14 @@
 
 #include "model.ih"
 
-int Model::getNodeFromTile(int idx_tile) const
+int Model::getNodeFromTile(int idx_tile, std::mt19937_64 &gen) const
 {
     auto const &tile = d_tileSets[idx_tile];
     
-    int const idx_rand = rand() % size(tile);
+    std::uniform_int_distribution<int> distribution(0, (int)size(tile) - 1);
+    
+    
+    int const idx_rand = distribution(gen);
     
     return tile[idx_rand];
 }
