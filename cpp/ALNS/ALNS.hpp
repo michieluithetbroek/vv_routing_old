@@ -54,6 +54,12 @@ private:
     bool relocate ();
     bool relocate_tile();
     
+    // Destroy operators
+    
+    std::vector<int> destroy_random          (std::vector<int> &route, int const nRemovals);
+    std::vector<int> destroy_random_sequence (std::vector<int> &route, int const nRemovals);
+    std::vector<int> destroy_random_square   (std::vector<int> &route, int const nRemovals);
+    
     // Helper function
     
     double loopCost(std::vector<int> const &route) const;

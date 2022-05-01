@@ -23,6 +23,9 @@
 		CC5A799D281BF49A00752F91 /* initial_CFI_A2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A799C281BF49A00752F91 /* initial_CFI_A2.cpp */; };
 		CC5A799F281C04B100752F91 /* relocate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A799E281C04B100752F91 /* relocate.cpp */; };
 		CC5A79A1281C0BDA00752F91 /* relocate_tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A79A0281C0BDA00752F91 /* relocate_tile.cpp */; };
+		CC68A5AE281F1C2200C3563C /* destroy_random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5AD281F1C2200C3563C /* destroy_random.cpp */; };
+		CC68A5B0281F1C7B00C3563C /* destroy_random_square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5AF281F1C7B00C3563C /* destroy_random_square.cpp */; };
+		CC68A5B2281F1C9300C3563C /* destroy_random_sequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5B1281F1C9300C3563C /* destroy_random_sequence.cpp */; };
 		CC72CE082808874C00D1D8E2 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE062808874C00D1D8E2 /* model.cpp */; };
 		CC72CE0B2808A46200D1D8E2 /* createVariables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE0A2808A46200D1D8E2 /* createVariables.cpp */; };
 		CC72CE0D2808AE7200D1D8E2 /* createObjective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE0C2808AE7200D1D8E2 /* createObjective.cpp */; };
@@ -85,6 +88,9 @@
 		CC5A799C281BF49A00752F91 /* initial_CFI_A2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initial_CFI_A2.cpp; sourceTree = "<group>"; };
 		CC5A799E281C04B100752F91 /* relocate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = relocate.cpp; sourceTree = "<group>"; };
 		CC5A79A0281C0BDA00752F91 /* relocate_tile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = relocate_tile.cpp; sourceTree = "<group>"; };
+		CC68A5AD281F1C2200C3563C /* destroy_random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = destroy_random.cpp; sourceTree = "<group>"; };
+		CC68A5AF281F1C7B00C3563C /* destroy_random_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = destroy_random_square.cpp; sourceTree = "<group>"; };
+		CC68A5B1281F1C9300C3563C /* destroy_random_sequence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = destroy_random_sequence.cpp; sourceTree = "<group>"; };
 		CC72CE062808874C00D1D8E2 /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		CC72CE072808874C00D1D8E2 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; usesTabs = 0; };
 		CC72CE09280888D900D1D8E2 /* model.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = model.ih; sourceTree = "<group>"; };
@@ -149,14 +155,12 @@
 		CC5A798A281A9A7A00752F91 /* ALNS */ = {
 			isa = PBXGroup;
 			children = (
+				CC68A5B3281F1D7C00C3563C /* initial_solution */,
+				CC68A5AC281F1C0A00C3563C /* operator_destroy */,
 				CC68A5AB281F194100C3563C /* local_search */,
 				CC5A7987281A9A7200752F91 /* ALNS.cpp */,
 				CC5A7988281A9A7200752F91 /* ALNS.hpp */,
 				CC5A798B281A9AB700752F91 /* ALNS.ih */,
-				CC5A798E281B11D000752F91 /* initial_random.cpp */,
-				CC5A7990281B222000752F91 /* initial_CFI_A.cpp */,
-				CC5A7992281B2B1D00752F91 /* initial_CFI_B.cpp */,
-				CC5A799C281BF49A00752F91 /* initial_CFI_A2.cpp */,
 			);
 			path = ALNS;
 			sourceTree = "<group>";
@@ -168,6 +172,27 @@
 				CC5A79A0281C0BDA00752F91 /* relocate_tile.cpp */,
 			);
 			path = local_search;
+			sourceTree = "<group>";
+		};
+		CC68A5AC281F1C0A00C3563C /* operator_destroy */ = {
+			isa = PBXGroup;
+			children = (
+				CC68A5AD281F1C2200C3563C /* destroy_random.cpp */,
+				CC68A5AF281F1C7B00C3563C /* destroy_random_square.cpp */,
+				CC68A5B1281F1C9300C3563C /* destroy_random_sequence.cpp */,
+			);
+			path = operator_destroy;
+			sourceTree = "<group>";
+		};
+		CC68A5B3281F1D7C00C3563C /* initial_solution */ = {
+			isa = PBXGroup;
+			children = (
+				CC5A798E281B11D000752F91 /* initial_random.cpp */,
+				CC5A7990281B222000752F91 /* initial_CFI_A.cpp */,
+				CC5A7992281B2B1D00752F91 /* initial_CFI_B.cpp */,
+				CC5A799C281BF49A00752F91 /* initial_CFI_A2.cpp */,
+			);
+			path = initial_solution;
 			sourceTree = "<group>";
 		};
 		CC72CE052808872D00D1D8E2 /* model */ = {
@@ -319,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC68A5B0281F1C7B00C3563C /* destroy_random_square.cpp in Sources */,
 				CC72CE0D2808AE7200D1D8E2 /* createObjective.cpp in Sources */,
 				CC5A79A1281C0BDA00752F91 /* relocate_tile.cpp in Sources */,
 				CC72CE082808874C00D1D8E2 /* model.cpp in Sources */,
@@ -336,10 +362,12 @@
 				CC72CE2E2814442500D1D8E2 /* getNodeFromTile.cpp in Sources */,
 				CC5A7991281B222000752F91 /* initial_CFI_A.cpp in Sources */,
 				CC5A7997281B315000752F91 /* read_tileSets_short.cpp in Sources */,
+				CC68A5B2281F1C9300C3563C /* destroy_random_sequence.cpp in Sources */,
 				CC72CE28280EB0D000D1D8E2 /* createConstraint_oneWay.cpp in Sources */,
 				CC5A7993281B2B1D00752F91 /* initial_CFI_B.cpp in Sources */,
 				CC72CE192809F1BD00D1D8E2 /* exportSolution.cpp in Sources */,
 				CC5A7984281A8AEE00752F91 /* create_costMatrix.cpp in Sources */,
+				CC68A5AE281F1C2200C3563C /* destroy_random.cpp in Sources */,
 				CC72CE1D280C417A00D1D8E2 /* mycallback.cpp in Sources */,
 				CC72CE0B2808A46200D1D8E2 /* createVariables.cpp in Sources */,
 				CC5A7989281A9A7200752F91 /* ALNS.cpp in Sources */,
