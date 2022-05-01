@@ -41,8 +41,8 @@ class ALNS
     
     // Local search moves
     
-    void relocate ();
-    void relocate_tile();
+    bool relocate ();
+    bool relocate_tile();
     
     // Helper function
     

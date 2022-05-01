@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
 
-#include "ALNS.ih"
+#include "./../ALNS.ih"
 
-void ALNS::relocate()
+bool ALNS::relocate()
 {
     size_t const n = size(d_route);
     
@@ -50,14 +50,31 @@ void ALNS::relocate()
         }
     }
     
-    for (int v: d_route)
-        cout << v << " ";
-    cout << endl;
+    if (bestIdxOut == -1 or bestSaving <= 0.001)
+        return false;
     
-    if (bestIdxOut == -1 or bestSaving <= 0)
-        cout << "No improvement found" << endl;
+    double const cost1 = loopCost(d_route);
     
-    cout << setprecision(9) << bestSaving << endl
-         << bestIdxOut << endl
-         << bestIdxIn << endl;
+    int const idxNode = d_route[bestIdxOut];
+    
+    if (bestIdxOut < bestIdxIn)
+        --bestIdxIn;
+    
+    d_route.erase(begin(d_route) + bestIdxOut);
+    d_route.insert(begin(d_route) + bestIdxIn + 1, idxNode);
+    
+    double const cost2 = loopCost(d_route);
+    
+    
+    cout << setprecision(9)
+         << "Relocate" << endl
+         << "  Saving:  " << bestSaving << endl
+         << "  Cost:    " << cost2 << endl
+         << "  Pos out: " << bestIdxOut << endl
+         << "  Post in: " << bestIdxIn << endl << endl;
+    
+    if (abs(cost1 - cost2 - bestSaving) > 0.001)
+        throw string("ALNS::relocate - incorrect saving\n");
+    
+    return true;
 }

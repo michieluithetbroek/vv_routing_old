@@ -10,7 +10,7 @@
 int main()
 try
 {
-    ALNS(1);
+    ALNS(3);
     
 //    Model m(1, 5);
     

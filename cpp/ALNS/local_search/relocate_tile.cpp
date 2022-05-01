@@ -15,9 +15,9 @@
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
 
-#include "ALNS.ih"
+#include "./../ALNS.ih"
 
-void ALNS::relocate_tile()
+bool ALNS::relocate_tile()
 {
     size_t const n = size(d_route);
     
@@ -72,29 +72,27 @@ void ALNS::relocate_tile()
         }
     }
 
-    if (bestSaving <= 0)
-        cout << "No improvement found" << endl;
+    if (bestSaving <= 0.01)
+        return false;
 
-    else
-    {
-        double const costOld = loopCost(d_route);
-        
-        d_route.erase(begin(d_route) + bestIdxPos_out);
-        d_route.insert(begin(d_route) + bestIdxPos_in + 1, bestIdxNode_in);
-        
-        double const costNew = loopCost(d_route);
-        
-        cout << setprecision(2) << bestSaving << endl
-             << "cost old:   " << costOld << endl
-             << "cost new:   " << costNew << endl
-             << "difference: " << costOld - costNew << endl
-             << "Node out:   " << bestIdxNode_out << endl
-             << "Node in:    " << bestIdxNode_in  << endl
-             << "Pos out:    " << bestIdxPos_out  << endl
-             << "Pos in:     " << bestIdxPos_in   << endl << endl;
-        
-        for (int v: d_route)
-            cout << v << " ";
-        cout << endl << endl;
-    }
+    double const costOld = loopCost(d_route);
+    
+    d_route.erase(begin(d_route) + bestIdxPos_out);
+    d_route.insert(begin(d_route) + bestIdxPos_in + 1, bestIdxNode_in);
+    
+    double const costNew = loopCost(d_route);
+    
+    cout << setprecision(2)
+         << "Relocate tile" << endl
+         << "  saving:     " << bestSaving << endl
+         << "  cost new:   " << costNew << endl
+         << "  Node out:   " << bestIdxNode_out << endl
+         << "  Node in:    " << bestIdxNode_in  << endl
+         << "  Pos out:    " << bestIdxPos_out  << endl
+         << "  Pos in:     " << bestIdxPos_in   << endl << endl;
+    
+    if (abs(costOld - costNew - bestSaving) > 0.001)
+        throw string("ALNS::relocate_tile - incorrect saving\n");
+    
+    return true;
 }

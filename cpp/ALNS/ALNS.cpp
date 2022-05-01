@@ -25,8 +25,10 @@ ALNS::ALNS(Init const init)
     initial_CFI_A2 (printRoutes);
 //    initial_CFI_B  (printRoutes);
     
-    for (int idx = 0; idx < 20; ++idx)
-        relocate_tile();
+    while (relocate());
+    while (relocate_tile());
+    
+    cout << "Final solution\n\n";
     
     printRoute();
 }
