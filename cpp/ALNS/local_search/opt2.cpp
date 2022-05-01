@@ -55,17 +55,17 @@ bool ALNS::opt2(vector<int> &route)
     double const cost2 = loopCost(route);
     double const diff  = cost1 - cost2;
     
-    cout << "2-OPT -----------------------------------------------------------" << endl
-         << "   Saving:  " << bestSaving    << endl
-         << "   diff:    " << diff          << endl
-         << "   Cost:    " << cost2         << endl
-         << "   idx A:   " << bestIdxA      << endl
-         << "   idx B:   " << bestIdxB      << endl << endl;
+//    cout << "2-OPT -----------------------------------------------------------" << endl
+//         << "   Saving:  " << bestSaving    << endl
+//         << "   diff:    " << diff          << endl
+//         << "   Cost:    " << cost2         << endl
+//         << "   idx A:   " << bestIdxA      << endl
+//         << "   idx B:   " << bestIdxB      << endl << endl;
     
-    if (diff < 0)
-        cout << "-----------------------------------------------------------" << endl
-             << "-----------------------------------------------------------" << endl
-             << "-----------------------------------------------------------" << endl;
-    
+//    if (diff < 0)
+//        cout << "-----------------------------------------------------------" << endl
+//             << "-----------------------------------------------------------" << endl
+//             << "-----------------------------------------------------------" << endl;
+//
     return true;
 }

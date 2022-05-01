@@ -82,13 +82,13 @@ bool ALNS::relocate_tile(vector<int> &route)
     
     double const costNew = loopCost(route);
     
-    cout << "Relocate tile" << endl
-         << "   saving:     " << bestSaving      << endl
-         << "   Cost:       " << costNew         << endl
-         << "   Node out:   " << bestIdxNode_out << endl
-         << "   Node in:    " << bestIdxNode_in  << endl
-         << "   Pos out:    " << bestIdxPos_out  << endl
-         << "   Pos in:     " << bestIdxPos_in   << endl << endl;
+//    cout << "Relocate tile" << endl
+//         << "   saving:     " << bestSaving      << endl
+//         << "   Cost:       " << costNew         << endl
+//         << "   Node out:   " << bestIdxNode_out << endl
+//         << "   Node in:    " << bestIdxNode_in  << endl
+//         << "   Pos out:    " << bestIdxPos_out  << endl
+//         << "   Pos in:     " << bestIdxPos_in   << endl << endl;
     
     if (abs(costOld - costNew - bestSaving) > 0.001)
         throw string("ALNS::relocate_tile - incorrect saving\n");

@@ -59,11 +59,11 @@ bool ALNS::swap(vector<int> &route)
     
     double const cost2 = loopCost(route);
     
-    cout << "Swap" << endl
-         << "   Saving:  " << bestSaving << endl
-         << "   Cost:    " << cost2      << endl
-         << "   idx A:   " << bestIdxA   << endl
-         << "   idx B:   " << bestIdxB   << endl << endl;
+//    cout << "Swap" << endl
+//         << "   Saving:  " << bestSaving << endl
+//         << "   Cost:    " << cost2      << endl
+//         << "   idx A:   " << bestIdxA   << endl
+//         << "   idx B:   " << bestIdxB   << endl << endl;
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::swap - incorrect saving\n");

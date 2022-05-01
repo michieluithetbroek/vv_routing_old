@@ -74,16 +74,16 @@ bool ALNS::relocate_sequence(vector<int> &route)
     
     double const cost2 = loopCost(route);
     
-    cout << "---------------------------------------------------------" << endl
-         << "---------------------------------------------------------" << endl
-         << "---------------------------------------------------------" << endl << endl;
-    
-    cout << "Relocate sequence" << endl
-         << "   Saving:  " << bestSaving << endl
-         << "   Cost:    " << cost2      << endl
-         << "   Pos out: " << bestIdxOut << endl
-         << "   Post in: " << bestIdxIn  << endl
-         << "   size:    " << bestSize   << endl << endl;
+//    cout << "---------------------------------------------------------" << endl
+//         << "---------------------------------------------------------" << endl
+//         << "---------------------------------------------------------" << endl << endl;
+//
+//    cout << "Relocate sequence" << endl
+//         << "   Saving:  " << bestSaving << endl
+//         << "   Cost:    " << cost2      << endl
+//         << "   Pos out: " << bestIdxOut << endl
+//         << "   Post in: " << bestIdxIn  << endl
+//         << "   size:    " << bestSize   << endl << endl;
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::relocate_sequence - incorrect saving\n");
