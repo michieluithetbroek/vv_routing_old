@@ -19,6 +19,7 @@
 - Allocate vector for x values once in the Callback class instead of in lazy callback function
 - Only create variables for non-zero arcs. Maybe we can use a vector of all existing arcs in the model class.
 - auto const start1 = chrono::high_resolution_clock::now();
+- first instead of best improvement
 
 ## Logbook
 - 2022-04-19: Implement lazy call back for SEC.

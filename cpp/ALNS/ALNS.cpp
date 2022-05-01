@@ -14,7 +14,7 @@ ALNS::ALNS(Init const init)
   d_cost             (init.cost()),
   d_tileSets_perTile (init.tileSets()),
   d_tileSets_perNode (init.tileSets_perNode()),
-  d_generator        (1)
+  d_generator        (rand())
 {
     cout << fixed << setprecision(0);
     
@@ -26,8 +26,11 @@ ALNS::ALNS(Init const init)
     initial_CFI_A2 (printRoutes);
 //    initial_CFI_B  (printRoutes);
     
+    while (swap());
     while (relocate());
+    while (swap());
     while (relocate_tile());
+    while (swap());
     
     cout << "Final solution\n\n";
     
