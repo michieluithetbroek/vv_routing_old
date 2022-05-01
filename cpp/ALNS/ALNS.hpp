@@ -54,6 +54,7 @@ private:
     bool relocate ();
     bool relocate_tile();
     bool swap();
+    bool swap_pair();
     
     // Destroy operators
     

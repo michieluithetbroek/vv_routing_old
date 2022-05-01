@@ -27,6 +27,7 @@
 		CC68A5B0281F1C7B00C3563C /* destroy_random_square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5AF281F1C7B00C3563C /* destroy_random_square.cpp */; };
 		CC68A5B2281F1C9300C3563C /* destroy_random_sequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5B1281F1C9300C3563C /* destroy_random_sequence.cpp */; };
 		CC68A5B5281F1E2500C3563C /* swap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5B4281F1E2500C3563C /* swap.cpp */; };
+		CC68A5B7281F22DA00C3563C /* swap_pair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC68A5B6281F22DA00C3563C /* swap_pair.cpp */; };
 		CC72CE082808874C00D1D8E2 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE062808874C00D1D8E2 /* model.cpp */; };
 		CC72CE0B2808A46200D1D8E2 /* createVariables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE0A2808A46200D1D8E2 /* createVariables.cpp */; };
 		CC72CE0D2808AE7200D1D8E2 /* createObjective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC72CE0C2808AE7200D1D8E2 /* createObjective.cpp */; };
@@ -93,6 +94,7 @@
 		CC68A5AF281F1C7B00C3563C /* destroy_random_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = destroy_random_square.cpp; sourceTree = "<group>"; };
 		CC68A5B1281F1C9300C3563C /* destroy_random_sequence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = destroy_random_sequence.cpp; sourceTree = "<group>"; };
 		CC68A5B4281F1E2500C3563C /* swap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = swap.cpp; sourceTree = "<group>"; };
+		CC68A5B6281F22DA00C3563C /* swap_pair.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = swap_pair.cpp; sourceTree = "<group>"; };
 		CC72CE062808874C00D1D8E2 /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		CC72CE072808874C00D1D8E2 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; usesTabs = 0; };
 		CC72CE09280888D900D1D8E2 /* model.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = model.ih; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				CC5A799E281C04B100752F91 /* relocate.cpp */,
 				CC5A79A0281C0BDA00752F91 /* relocate_tile.cpp */,
 				CC68A5B4281F1E2500C3563C /* swap.cpp */,
+				CC68A5B6281F22DA00C3563C /* swap_pair.cpp */,
 			);
 			path = local_search;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				CC72CE0D2808AE7200D1D8E2 /* createObjective.cpp in Sources */,
 				CC5A79A1281C0BDA00752F91 /* relocate_tile.cpp in Sources */,
 				CC72CE082808874C00D1D8E2 /* model.cpp in Sources */,
+				CC68A5B7281F22DA00C3563C /* swap_pair.cpp in Sources */,
 				CC5A797E281A85F100752F91 /* read_tileSets_long.cpp in Sources */,
 				CC72CE132808CE5800D1D8E2 /* printSolution.cpp in Sources */,
 				CC5A7999281B34CE00752F91 /* read_distances.cpp in Sources */,
