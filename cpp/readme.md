@@ -5,6 +5,7 @@
 ## Programming
 
 ### To do
+- seed -151993141 gives an error
 - Move Edge definition outside Init class
 - Print tile data
 - Correct tile input data

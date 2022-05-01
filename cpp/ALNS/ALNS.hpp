@@ -35,6 +35,7 @@ class ALNS
     
     // Random generator
     
+    int const d_seed;
     std::mt19937 d_generator;
     
 public:

@@ -50,13 +50,7 @@ bool ALNS::opt2()
     
     double const cost1 = loopCost(d_route);
     
-    cout << "before\n";
-    printRoute();
-    
-    cout << "\nafter\n";
     std::reverse(begin(d_route) + bestIdxA + 1, begin(d_route) + bestIdxB + 1);
-    
-    printRoute();
     
     double const cost2 = loopCost(d_route);
     double const diff  = cost1 - cost2;

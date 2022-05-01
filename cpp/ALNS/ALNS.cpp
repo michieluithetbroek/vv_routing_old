@@ -14,9 +14,12 @@ ALNS::ALNS(Init const init)
   d_cost             (init.cost()),
   d_tileSets_perTile (init.tileSets()),
   d_tileSets_perNode (init.tileSets_perNode()),
-  d_generator        (std::random_device()())
+  d_seed             (std::random_device()()),
+  d_generator        (d_seed)
 {
-    cout << fixed << setprecision(2);
+    cout << fixed << setprecision(2)
+         << "Seed = " << d_seed << endl
+         << endl;
     
     bool const printRoutes = false;
     
@@ -38,11 +41,11 @@ ALNS::ALNS(Init const init)
         if (swap())
             finished = false;
         
-        if (swap_pair())
-            finished = false;
-        
-        if (opt2())
-            finished = false;
+//        if (swap_pair())
+//            finished = false;
+//
+//        if (opt2())
+//            finished = false;
         
         if (relocate_tile())
             finished = false;
