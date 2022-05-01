@@ -16,7 +16,7 @@ ALNS::ALNS(Init const init)
   d_tileSets_perNode (init.tileSets_perNode()),
   d_generator        (std::random_device()())
 {
-    cout << fixed << setprecision(0);
+    cout << fixed << setprecision(2);
     
     bool const printRoutes = false;
     
@@ -32,19 +32,16 @@ ALNS::ALNS(Init const init)
     {
         finished = true;
         
-        if (swap_pair())
-            finished = false;
-        
         if (relocate())
-            finished = false;
-        
-        if (swap_pair())
             finished = false;
         
         if (swap())
             finished = false;
         
         if (swap_pair())
+            finished = false;
+        
+        if (opt2())
             finished = false;
         
         if (relocate_tile())

@@ -160,8 +160,7 @@ bool ALNS::swap_pair()
     
     double const cost2 = loopCost(d_route);
     
-    cout << setprecision(2)
-         << "Swap pair ---------------------------------------------------------" << endl
+    cout << "Swap pair ---------------------------------------------------------" << endl
          << "   Saving:  " << bestSaving << endl
          << "   Cost:    " << cost2      << endl
          << "   Option:  " << bestOption << endl

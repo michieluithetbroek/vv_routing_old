@@ -66,12 +66,11 @@ bool ALNS::relocate()
     double const cost2 = loopCost(d_route);
     
     
-    cout << setprecision(9)
-         << "Relocate" << endl
-         << "  Saving:  " << bestSaving << endl
-         << "  Cost:    " << cost2 << endl
-         << "  Pos out: " << bestIdxOut << endl
-         << "  Post in: " << bestIdxIn << endl << endl;
+    cout << "Relocate" << endl
+         << "   Saving:  " << bestSaving << endl
+         << "   Cost:    " << cost2 << endl
+         << "   Pos out: " << bestIdxOut << endl
+         << "   Post in: " << bestIdxIn << endl << endl;
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::relocate - incorrect saving\n");

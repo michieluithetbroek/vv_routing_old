@@ -12,7 +12,7 @@
 
 void ALNS::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 1000;
+    int const nRep = 10000;
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
