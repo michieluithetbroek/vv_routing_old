@@ -7,9 +7,9 @@
 
 #include "./../ALNS.ih"
 
-bool ALNS::relocate()
+bool ALNS::relocate(vector<int> &route)
 {
-    size_t const n = size(d_route);
+    size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
     size_t bestIdxOut = -1;
@@ -17,9 +17,9 @@ bool ALNS::relocate()
     
     for (size_t idx_out = 1; idx_out < n - 1; ++idx_out)
     {
-        int const idx_prev = d_route[idx_out - 1];
-        int const idx_curr = d_route[idx_out];
-        int const idx_next = d_route[idx_out + 1];
+        int const idx_prev = route[idx_out - 1];
+        int const idx_curr = route[idx_out];
+        int const idx_next = route[idx_out + 1];
         
         double const costSaving = d_cost[idx_prev][idx_curr]
                                 + d_cost[idx_curr][idx_next]
@@ -31,8 +31,8 @@ bool ALNS::relocate()
         // Try to insert after idx_in
         for (size_t idx_in = 0; idx_in < n - 1; ++idx_in)
         {
-            int const idx_prev_in = d_route[idx_in];
-            int const idx_next_in = d_route[idx_in + 1];
+            int const idx_prev_in = route[idx_in];
+            int const idx_next_in = route[idx_in + 1];
             
             if (idx_in + 1 == idx_out or idx_in == idx_out)
                 continue;
@@ -53,17 +53,17 @@ bool ALNS::relocate()
     if (bestIdxOut == -1 or bestSaving <= 0.001)
         return false;
     
-    double const cost1 = loopCost(d_route);
+    double const cost1 = loopCost(route);
     
-    int const idxNode = d_route[bestIdxOut];
+    int const idxNode = route[bestIdxOut];
     
     if (bestIdxOut < bestIdxIn)
         --bestIdxIn;
     
-    d_route.erase(begin(d_route) + bestIdxOut);
-    d_route.insert(begin(d_route) + bestIdxIn + 1, idxNode);
+    route.erase(begin(route) + bestIdxOut);
+    route.insert(begin(route) + bestIdxIn + 1, idxNode);
     
-    double const cost2 = loopCost(d_route);
+    double const cost2 = loopCost(route);
     
     
     cout << "Relocate" << endl

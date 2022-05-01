@@ -12,9 +12,9 @@
 
 #include "./../ALNS.ih"
 
-bool ALNS::swap_pair()
+bool ALNS::swap_pair(vector<int> &route)
 {
-    size_t const n = size(d_route);
+    size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
     int bestOption  = -1;
@@ -25,15 +25,15 @@ bool ALNS::swap_pair()
     {
         for (size_t idxB = idxA + 3; idxB < n - 2; ++idxB)
         {
-            int const idx_prevA  = d_route[idxA - 1];
-            int const idx_currA1 = d_route[idxA];
-            int const idx_currA2 = d_route[idxA + 1];
-            int const idx_nextA  = d_route[idxA + 2];
+            int const idx_prevA  = route[idxA - 1];
+            int const idx_currA1 = route[idxA];
+            int const idx_currA2 = route[idxA + 1];
+            int const idx_nextA  = route[idxA + 2];
             
-            int const idx_prevB  = d_route[idxB - 1];
-            int const idx_currB1 = d_route[idxB];
-            int const idx_currB2 = d_route[idxB + 1];
-            int const idx_nextB  = d_route[idxB + 2];
+            int const idx_prevB  = route[idxB - 1];
+            int const idx_currB1 = route[idxB];
+            int const idx_currB2 = route[idxB + 1];
+            int const idx_nextB  = route[idxB + 2];
             
             double const costSaving = d_cost[idx_prevA][idx_currA1]
                                     + d_cost[idx_currA2][idx_nextA]
@@ -115,50 +115,50 @@ bool ALNS::swap_pair()
     if (bestSaving <= 0.001)
         return false;
     
-    double const cost1 = loopCost(d_route);
+    double const cost1 = loopCost(route);
     
-    int const nodeA1 = d_route[bestIdxA];
-    int const nodeA2 = d_route[bestIdxA + 1];
-    int const nodeB1 = d_route[bestIdxB];
-    int const nodeB2 = d_route[bestIdxB + 1];
+    int const nodeA1 = route[bestIdxA];
+    int const nodeA2 = route[bestIdxA + 1];
+    int const nodeB1 = route[bestIdxB];
+    int const nodeB2 = route[bestIdxB + 1];
     
     if (bestOption == 1)
     {
-        d_route[bestIdxA]     = nodeB1;
-        d_route[bestIdxA + 1] = nodeB2;
-        d_route[bestIdxB]     = nodeA1;
-        d_route[bestIdxB + 1] = nodeA2;
+        route[bestIdxA]     = nodeB1;
+        route[bestIdxA + 1] = nodeB2;
+        route[bestIdxB]     = nodeA1;
+        route[bestIdxB + 1] = nodeA2;
     }
     
     else if (bestOption == 2)
     {
-        d_route[bestIdxA]     = nodeB2;
-        d_route[bestIdxA + 1] = nodeB1;
-        d_route[bestIdxB]     = nodeA2;
-        d_route[bestIdxB + 1] = nodeA1;
+        route[bestIdxA]     = nodeB2;
+        route[bestIdxA + 1] = nodeB1;
+        route[bestIdxB]     = nodeA2;
+        route[bestIdxB + 1] = nodeA1;
     }
     
     else if (bestOption == 3)
     {
-        d_route[bestIdxA]     = nodeB1;
-        d_route[bestIdxA + 1] = nodeB2;
-        d_route[bestIdxB]     = nodeA2;
-        d_route[bestIdxB + 1] = nodeA1;
+        route[bestIdxA]     = nodeB1;
+        route[bestIdxA + 1] = nodeB2;
+        route[bestIdxB]     = nodeA2;
+        route[bestIdxB + 1] = nodeA1;
     }
     
     else if (bestOption == 4)
     {
-        d_route[bestIdxA]     = nodeB2;
-        d_route[bestIdxA + 1] = nodeB1;
-        d_route[bestIdxB]     = nodeA1;
-        d_route[bestIdxB + 1] = nodeA2;
+        route[bestIdxA]     = nodeB2;
+        route[bestIdxA + 1] = nodeB1;
+        route[bestIdxB]     = nodeA1;
+        route[bestIdxB + 1] = nodeA2;
     }
     
     else
         throw string("ALNS::swap_pair - unknown option\n");
     
     
-    double const cost2 = loopCost(d_route);
+    double const cost2 = loopCost(route);
     
     cout << "Swap pair ---------------------------------------------------------" << endl
          << "   Saving:  " << bestSaving << endl

@@ -12,9 +12,9 @@
 
 #include "./../ALNS.ih"
 
-bool ALNS::opt2()
+bool ALNS::opt2(vector<int> &route)
 {
-    size_t const n = size(d_route);
+    size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
     size_t bestIdxA = -1;
@@ -24,11 +24,11 @@ bool ALNS::opt2()
     {
         for (size_t idxB = idxA + 2; idxB < n - 1; ++idxB)
         {
-            int const idx_currA = d_route[idxA];
-            int const idx_nextA = d_route[idxA + 1];
+            int const idx_currA = route[idxA];
+            int const idx_nextA = route[idxA + 1];
             
-            int const idx_currB = d_route[idxB];
-            int const idx_nextB = d_route[idxB + 1];
+            int const idx_currB = route[idxB];
+            int const idx_nextB = route[idxB + 1];
             
             double const costSaving = d_cost[idx_currA][idx_nextA]
                                     - d_cost[idx_currA][idx_currB]
@@ -48,11 +48,11 @@ bool ALNS::opt2()
     if (bestSaving <= 0.001)
         return false;
     
-    double const cost1 = loopCost(d_route);
+    double const cost1 = loopCost(route);
     
-    std::reverse(begin(d_route) + bestIdxA + 1, begin(d_route) + bestIdxB + 1);
+    std::reverse(begin(route) + bestIdxA + 1, begin(route) + bestIdxB + 1);
     
-    double const cost2 = loopCost(d_route);
+    double const cost2 = loopCost(route);
     double const diff  = cost1 - cost2;
     
     cout << "2-OPT -----------------------------------------------------------" << endl

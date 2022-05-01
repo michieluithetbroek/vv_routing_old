@@ -17,9 +17,9 @@
 
 #include "./../ALNS.ih"
 
-bool ALNS::relocate_tile()
+bool ALNS::relocate_tile(vector<int> &route)
 {
-    size_t const n = size(d_route);
+    size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
     size_t bestIdxPos_out = -1;
@@ -31,9 +31,9 @@ bool ALNS::relocate_tile()
     
     for (size_t idx_out = 1; idx_out < n - 1; ++idx_out)
     {
-        int const idx_prev = d_route[idx_out - 1];
-        int const idx_curr = d_route[idx_out];
-        int const idx_next = d_route[idx_out + 1];
+        int const idx_prev = route[idx_out - 1];
+        int const idx_curr = route[idx_out];
+        int const idx_next = route[idx_out + 1];
         
         double const costSaving = d_cost[idx_prev][idx_curr]
                                 + d_cost[idx_curr][idx_next]
@@ -42,7 +42,7 @@ bool ALNS::relocate_tile()
         if (costSaving < bestSaving)
             continue;
         
-        auto tmp_route = d_route;
+        auto tmp_route = route;
         
         tmp_route.erase(begin(tmp_route) + idx_out);
         
@@ -75,12 +75,12 @@ bool ALNS::relocate_tile()
     if (bestSaving <= 0.01)
         return false;
 
-    double const costOld = loopCost(d_route);
+    double const costOld = loopCost(route);
     
-    d_route.erase(begin(d_route) + bestIdxPos_out);
-    d_route.insert(begin(d_route) + bestIdxPos_in + 1, bestIdxNode_in);
+    route.erase(begin(route) + bestIdxPos_out);
+    route.insert(begin(route) + bestIdxPos_in + 1, bestIdxNode_in);
     
-    double const costNew = loopCost(d_route);
+    double const costNew = loopCost(route);
     
     cout << "Relocate tile" << endl
          << "   saving:     " << bestSaving      << endl

@@ -10,9 +10,9 @@
 
 #include "./../ALNS.ih"
 
-bool ALNS::swap()
+bool ALNS::swap(vector<int> &route)
 {
-    size_t const n = size(d_route);
+    size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
     size_t bestIdxA = -1;
@@ -22,13 +22,13 @@ bool ALNS::swap()
     {
         for (size_t idxB = idxA + 2; idxB < n - 1; ++idxB)
         {
-            int const idx_prevA = d_route[idxA - 1];
-            int const idx_currA = d_route[idxA];
-            int const idx_nextA = d_route[idxA + 1];
+            int const idx_prevA = route[idxA - 1];
+            int const idx_currA = route[idxA];
+            int const idx_nextA = route[idxA + 1];
             
-            int const idx_prevB = d_route[idxB - 1];
-            int const idx_currB = d_route[idxB];
-            int const idx_nextB = d_route[idxB + 1];
+            int const idx_prevB = route[idxB - 1];
+            int const idx_currB = route[idxB];
+            int const idx_nextB = route[idxB + 1];
             
             double const costSaving = d_cost[idx_prevA][idx_currA]
                                     + d_cost[idx_currA][idx_nextA]
@@ -53,17 +53,17 @@ bool ALNS::swap()
     if (bestSaving <= 0.001)
         return false;
     
-    double const cost1 = loopCost(d_route);
+    double const cost1 = loopCost(route);
     
-    std::swap(d_route[bestIdxA], d_route[bestIdxB]);
+    std::swap(route[bestIdxA], route[bestIdxB]);
     
-    double const cost2 = loopCost(d_route);
+    double const cost2 = loopCost(route);
     
     cout << "Swap" << endl
          << "   Saving:  " << bestSaving << endl
-         << "   Cost:    " << cost2 << endl
-         << "   idx A:   " << bestIdxA << endl
-         << "   idx B:   " << bestIdxB << endl << endl;
+         << "   Cost:    " << cost2      << endl
+         << "   idx A:   " << bestIdxA   << endl
+         << "   idx B:   " << bestIdxB   << endl << endl;
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::swap - incorrect saving\n");

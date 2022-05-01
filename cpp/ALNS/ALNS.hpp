@@ -52,11 +52,12 @@ private:
     
     // Local search moves
     
-    bool relocate ();
-    bool relocate_tile();
-    bool swap();
-    bool swap_pair();
-    bool opt2();
+    bool relocate          (std::vector<int> &route);
+    bool relocate_tile     (std::vector<int> &route);
+    bool relocate_sequence (std::vector<int> &route);
+    bool swap              (std::vector<int> &route);
+    bool swap_pair         (std::vector<int> &route);
+    bool opt2              (std::vector<int> &route);
     
     // Destroy operators
     

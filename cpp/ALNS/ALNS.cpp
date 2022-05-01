@@ -31,23 +31,28 @@ ALNS::ALNS(Init const init)
     
     bool finished = false;
     
+    vector<int> route = d_route;
+    
     while (not finished)
     {
         finished = true;
         
-        if (relocate())
+        if (relocate(route))
             finished = false;
         
-        if (swap())
+        if (swap(route))
             finished = false;
         
-//        if (swap_pair())
-//            finished = false;
-//
-//        if (opt2())
-//            finished = false;
+        if (swap_pair(route))
+            finished = false;
+
+        if (opt2(route))
+            finished = false;
         
-        if (relocate_tile())
+        if (relocate_sequence(route))
+            finished = false;
+        
+        if (relocate_tile(route))
             finished = false;
     }
     
