@@ -12,9 +12,10 @@
 
 void ALNS::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 2 * 150000;
+    int const nRep = 100000;
     
     double bestCost = numeric_limits<double>::max();
+    vector<int> bestRoute;
     
     random_device dev;
     mt19937 generator (dev());
@@ -104,7 +105,8 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
         
         if (cost < bestCost)
         {
-            bestCost = cost;
+            bestCost  = cost;
+            bestRoute = route;
             
             cout << "A2 "
                  << setw(5)  << idx_rep << " "
@@ -116,4 +118,9 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
             cout << endl;
         }
     }
+    
+    cout << endl;
+    
+    d_currCost = bestCost;
+    d_route    = bestRoute;
 }

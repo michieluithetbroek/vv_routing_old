@@ -5,7 +5,6 @@
 //  Created by Michiel uit het Broek on 28/04/2022.
 //
 
-
 #include "ALNS.ih"
 
 ALNS::ALNS(Init const init)
@@ -22,7 +21,12 @@ ALNS::ALNS(Init const init)
     
 //    initial_random(printRoutes);
 
-    initial_CFI_A  (printRoutes);
+//    initial_CFI_A  (printRoutes);
     initial_CFI_A2 (printRoutes);
-    initial_CFI_B  (printRoutes);
+//    initial_CFI_B  (printRoutes);
+    
+    for (int idx = 0; idx < 20; ++idx)
+        relocate_tile();
+    
+    printRoute();
 }

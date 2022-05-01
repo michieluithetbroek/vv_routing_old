@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <iostream>
 
 #include "init.hpp"
 
@@ -38,9 +39,44 @@ class ALNS
     void initial_CFI_A2 (bool const printRoutes);
     void initial_CFI_B  (bool const printRoutes);
     
+    // Local search moves
+    
+    void relocate ();
+    void relocate_tile();
+    
+    // Helper function
+    
+    double loopCost(std::vector<int> const &route) const;
+    void printRoute() const;
+    
 public:
     ALNS(Init const init);
     
 private:
     
 };
+
+inline void ALNS::printRoute() const
+{
+    for (int v: d_route)
+        std::cout << v << " ";
+    
+    std::cout << '\n';
+}
+
+inline double ALNS::loopCost(std::vector<int> const &route) const
+{
+    size_t const n = size(route);
+    
+    double cost = d_cost[route[n - 1]][route[0]];
+    
+    for (int idx = 0; idx < n - 1; ++idx)
+    {
+        int from = route[idx];
+        int to   = route[idx + 1];
+        
+        cost += d_cost[from][to];
+    }
+    
+    return cost;
+}

@@ -15,18 +15,18 @@ void ALNS::initial_CFI_A(bool const printRoutes)
     int const nRep = 15000;
     
     double bestCost = numeric_limits<double>::max();
+    vector<int> bestRoute;
     
     random_device dev;
     mt19937 generator (dev());
     
+    uniform_int_distribution<int> dis(0, d_nNodes - 1);
+    
     for (int idx_rep = 0; idx_rep < nRep; ++idx_rep)
     {
-        
         // ---------------------------------------------------
         // --- Select random start node                    ---
         // ---------------------------------------------------
-        
-        uniform_int_distribution<int> dis(0, d_nNodes - 1);
         
         int const start_node = dis(generator);
         
@@ -99,7 +99,8 @@ void ALNS::initial_CFI_A(bool const printRoutes)
         
         if (cost < bestCost)
         {
-            bestCost = cost;
+            bestCost  = cost;
+            bestRoute = route;
             
             cout << "A "
                  << setw(5)  << idx_rep << " "
@@ -113,4 +114,7 @@ void ALNS::initial_CFI_A(bool const printRoutes)
     }
     
     cout << endl;
+    
+    d_currCost = bestCost;
+    d_route    = bestRoute;
 }

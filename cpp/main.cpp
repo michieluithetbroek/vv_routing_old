@@ -10,7 +10,9 @@
 int main()
 try
 {
-    Model m(1 , 5 * 60);
+    ALNS(1);
+    
+//    Model m(1, 5);
     
     return 0;
 }

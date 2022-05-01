@@ -13,6 +13,7 @@ void ALNS::initial_random(bool const printRoutes)
     int const nRep2 = 2500;
     
     double bestCost = numeric_limits<double>::max();
+    vector<int> bestRoute;
     
     random_device dev;
     mt19937 generator (dev());
@@ -73,7 +74,8 @@ void ALNS::initial_random(bool const printRoutes)
                 
             if (cost < bestCost)
             {
-                bestCost = cost;
+                bestCost  = cost;
+                bestRoute = route;
                 
                 cout << setw(11) << idxRep1 << " "
                      << setw(5)  << idxRep2 << " "
@@ -93,5 +95,5 @@ void ALNS::initial_random(bool const printRoutes)
     cout << endl;
     
     d_currCost = bestCost;
-    d_route = route;
+    d_route    = bestRoute;
 }

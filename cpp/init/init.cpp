@@ -24,5 +24,5 @@ Init::Init(int idx_inst)
     
     create_tileSet_perNode();
     
-    printTileData();
+//    printTileData();
 }

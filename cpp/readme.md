@@ -5,7 +5,6 @@
 ## Programming
 
 ### To do
-- Separete init class for reading data
 - Move Edge definition outside Init class
 - Print tile data
 - Correct tile input data
@@ -22,4 +21,7 @@
 - auto const start1 = chrono::high_resolution_clock::now();
 
 ## Logbook
-- 2022-04-19: implement lazy call back for SEC.
+- 2022-04-19: Implement lazy call back for SEC.
+- 2022-04-28: Separate init class for reading data
+- 2022-04-28: Finished multiple initial solutions
+- 2022-04-29: New initial solution
