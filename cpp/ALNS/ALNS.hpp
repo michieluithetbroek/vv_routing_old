@@ -41,6 +41,8 @@ class ALNS
 public:
     ALNS(Init const init);
     
+    double localsearch(std::vector<int> &route);
+    
 private:
     
     // Initial solutions
