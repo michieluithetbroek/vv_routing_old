@@ -23,38 +23,13 @@ ALNS::ALNS(Init const init)
     
     bool const printRoutes = false;
     
-//    initial_random(printRoutes);
-
+//    initial_random (printRoutes);
 //    initial_CFI_A  (printRoutes);
-    initial_CFI_A2 (printRoutes);
 //    initial_CFI_B  (printRoutes);
     
-    bool finished = false;
-    
-    vector<int> route = d_route;
-    
-    while (not finished)
-    {
-        finished = true;
-        
-        if (relocate(route))
-            finished = false;
-        
-        if (swap(route))
-            finished = false;
-        
-        if (swap_pair(route))
-            finished = false;
+    initial_CFI_A2 (printRoutes);
 
-        if (opt2(route))
-            finished = false;
-        
-        if (relocate_sequence(route))
-            finished = false;
-        
-        if (relocate_tile(route))
-            finished = false;
-    }
+    cout << localsearch(d_route) << endl;
     
     cout << "Final solution\n\n";
     

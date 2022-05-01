@@ -12,7 +12,7 @@
 
 void ALNS::initial_CFI_A(bool const printRoutes)
 {
-    int const nRep = 15000;
+    int const nRep = 1000;
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
@@ -78,21 +78,19 @@ void ALNS::initial_CFI_A(bool const printRoutes)
             tileVisited[d_tileSets_perNode[bestNode]] = true;
         }
         
+        
+        // --------------------------------------------
+        // --- Improve route                        ---
+        // --------------------------------------------
+        
+        localsearch(route);
+        
+        
         // --------------------------------------------
         // --- Compute costs                        ---
         // --------------------------------------------
         
-        size_t const n = size(route);
-        
-        double cost = d_cost[route[n - 1]][route[0]];
-        
-        for (int idx = 0; idx < n - 1; ++idx)
-        {
-            int from = route[idx];
-            int to   = route[idx + 1];
-            
-            cost += d_cost[from][to];
-        }
+        double const cost = loopCost(route);
         
         if (cost < bestCost)
         {

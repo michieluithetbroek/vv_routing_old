@@ -9,8 +9,8 @@
 
 void ALNS::initial_random(bool const printRoutes)
 {
-    int const nRep1 = 10000;
-    int const nRep2 = 2500;
+    int const nRep1 = 10;
+    int const nRep2 = 25;
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
@@ -54,21 +54,19 @@ void ALNS::initial_random(bool const printRoutes)
             
             
             // --------------------------------------------
+            // --- Improve route                        ---
+            // --------------------------------------------
+            
+            localsearch(route);
+            
+            
+            
+            // --------------------------------------------
             // --- Compute costs                        ---
             // --------------------------------------------
             
-            size_t const n = size(route);
+            double const cost = loopCost(route);
             
-            double cost = d_cost[route[n - 1]][route[0]];
-            
-            for (int idx = 0; idx < n - 1; ++idx)
-            {
-                int from = route[idx];
-                int to   = route[idx + 1];
-                
-                cost += d_cost[from][to];
-            }
-                
             if (cost < bestCost)
             {
                 bestCost  = cost;

@@ -12,7 +12,7 @@
 
 void ALNS::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 10000;
+    int const nRep = 5000;
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
@@ -85,20 +85,18 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
         
         
         // --------------------------------------------
+        // --- Improve route                        ---
+        // --------------------------------------------
+        
+        double const saving_LS = localsearch(route);
+        
+        
+        
+        // --------------------------------------------
         // --- Compute costs                        ---
         // --------------------------------------------
         
-        size_t const n = size(route);
-        
-        double cost = d_cost[route[n - 1]][route[0]];
-        
-        for (int idx = 0; idx < n - 1; ++idx)
-        {
-            int from = route[idx];
-            int to   = route[idx + 1];
-            
-            cost += d_cost[from][to];
-        }
+        double const cost = loopCost(route);
         
         if (cost < bestCost)
         {
@@ -107,7 +105,8 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
             
             cout << "A2 "
                  << setw(5)  << idx_rep << " "
-                 << setw(10) << cost << " | ";
+                 << setw(10) << cost << " | "
+                 << setw(10) << saving_LS << " ";
 
             if (printRoutes)
                 for (int v: route)
