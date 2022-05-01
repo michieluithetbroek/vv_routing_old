@@ -8,7 +8,7 @@
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
 
-#include "ALNS.ih"
+#include "./../ALNS.ih"
 
 void ALNS::initial_CFI_A2(bool const printRoutes)
 {
@@ -16,9 +16,6 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
-    
-    random_device dev;
-    mt19937 generator (dev());
     
     uniform_int_distribution<int> dis(0, d_nNodes - 1);
     
@@ -28,7 +25,7 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
         // --- Select random start node                    ---
         // ---------------------------------------------------
         
-        int const start_node = dis(generator);
+        int const start_node = dis(d_generator);
         
         vector<int> route({start_node, start_node});
         route.reserve(d_nTiles + 1);
@@ -48,7 +45,7 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
             if (idx_tile != exclude_tile)
                 indices_tiles.push_back(idx_tile);
 
-        shuffle(begin(indices_tiles), end(indices_tiles), generator);
+        shuffle(begin(indices_tiles), end(indices_tiles), d_generator);
         
         
         

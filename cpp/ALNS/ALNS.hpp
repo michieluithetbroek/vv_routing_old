@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
+#include <random>
 
 #include "init.hpp"
 
@@ -32,6 +33,15 @@ class ALNS
     double d_currCost;
     std::vector<int> d_route;
     
+    // Random generator
+    
+    std::mt19937 d_generator;
+    
+public:
+    ALNS(Init const init);
+    
+private:
+    
     // Initial solutions
     
     void initial_random (bool const printRoutes);
@@ -48,12 +58,6 @@ class ALNS
     
     double loopCost(std::vector<int> const &route) const;
     void printRoute() const;
-    
-public:
-    ALNS(Init const init);
-    
-private:
-    
 };
 
 inline void ALNS::printRoute() const

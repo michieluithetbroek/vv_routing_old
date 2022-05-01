@@ -5,7 +5,7 @@
 //  Created by Michiel uit het Broek on 28/04/2022.
 //
 
-#include "ALNS.ih"
+#include "./../ALNS.ih"
 
 void ALNS::initial_random(bool const printRoutes)
 {
@@ -14,9 +14,6 @@ void ALNS::initial_random(bool const printRoutes)
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
-    
-    random_device dev;
-    mt19937 generator (dev());
     
     vector<int> route(d_nTiles, -1);
     
@@ -32,7 +29,7 @@ void ALNS::initial_random(bool const printRoutes)
         for (int idx = 0; idx < d_nTiles; ++idx)
             idx_tiles[idx] = idx;
         
-        shuffle (begin(idx_tiles), end(idx_tiles), generator);
+        shuffle (begin(idx_tiles), end(idx_tiles), d_generator);
         
         
         
@@ -51,7 +48,7 @@ void ALNS::initial_random(bool const printRoutes)
                 
                 uniform_int_distribution<int> dis(0, (int) size(tileSet) - 1);
                 
-                route[idx] = tileSet[dis(generator)];
+                route[idx] = tileSet[dis(d_generator)];
             }
             
             

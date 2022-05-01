@@ -13,7 +13,8 @@ ALNS::ALNS(Init const init)
   d_nTiles           (init.nTileSets()),
   d_cost             (init.cost()),
   d_tileSets_perTile (init.tileSets()),
-  d_tileSets_perNode (init.tileSets_perNode())
+  d_tileSets_perNode (init.tileSets_perNode()),
+  d_generator        (1)
 {
     cout << fixed << setprecision(0);
     
