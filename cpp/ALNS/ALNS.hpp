@@ -86,6 +86,10 @@ private:
     std::vector<int> destroy_random_sequence (std::vector<int> &route, int const nRemovals);
     std::vector<int> destroy_random_square   (std::vector<int> &route, int const nRemovals);
     
+    // Repair operators
+    
+    double CFI_fixed (std::vector<int> &route, std::vector<int> const &nodes);
+    
     // Helper function
     
     double loopCost(std::vector<int> const &route) const;
