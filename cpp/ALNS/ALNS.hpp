@@ -11,10 +11,29 @@
 #include <vector>
 #include <iostream>
 #include <random>
+#include <utility>
+#include <ostream>
 
 #include "init.hpp"
 
-
+struct Result
+{
+    int idx_tile = -1;
+    int idx_node = -1;
+    int idx_pos  = -2;
+    
+    double cost = std::numeric_limits<double>::max();
+    
+    friend std::ostream &operator << (std::ostream &out, Result const &result)
+    {
+        out << "  tile:  " << result.idx_tile << std::endl
+            << "  node:  " << result.idx_node << std::endl
+            << "  pos:   " << result.idx_pos  << std::endl
+            << "  costs: " << result.cost     << std::endl;
+        
+        return out;
+    }
+};
 
 class ALNS
 {
@@ -71,6 +90,9 @@ private:
     
     double loopCost(std::vector<int> const &route) const;
     void printRoute() const;
+    
+    Result get_CI      (std::vector<int> const &route, int const idx_node) const;
+    Result get_CI_tile (std::vector<int> const &route, int const idx_node) const;
 };
 
 inline void ALNS::printRoute() const
