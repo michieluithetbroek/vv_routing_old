@@ -72,6 +72,8 @@ bool ALNS::relocate_tiles (vector<int> &route)
 
         improvement = true;
         
+        ++d_count_relocate_tiles;
+        
         double const costOld = loopCost(route);
         
         route.erase(begin(route) + bestIdxPos_out);
@@ -93,7 +95,6 @@ bool ALNS::relocate_tiles (vector<int> &route)
     
     auto const end = std::chrono::system_clock::now();
     
-    ++d_count_relocate_tiles;
     d_time_relocate_tiles += (end - start).count();
     
     return improvement;
