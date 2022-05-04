@@ -16,7 +16,7 @@ ALNS::ALNS(Init const init)
   d_tileSets_perTile (init.tileSets()),
   d_tileSets_perNode (init.tileSets_perNode()),
   d_seed             (std::random_device()()),
-  d_generator        (d_seed)
+  d_generator        (1)
 {
     auto const start = std::chrono::system_clock::now();
     
