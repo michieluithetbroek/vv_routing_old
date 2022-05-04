@@ -12,7 +12,7 @@
 
 void ALNS::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 5000;
+    int const nRep = 500;
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
@@ -61,6 +61,8 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
             
             for (int const idx_node: d_tileSets_perTile[idx_tile])
             {
+//                auto const result = get_CI(route, idx_node);
+//                
                 for (int idx_insert = 0; idx_insert < size(route) - 1; ++idx_insert)
                 {
                     int const idx_from = route[idx_insert];

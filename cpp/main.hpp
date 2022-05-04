@@ -7,8 +7,6 @@
 
 #pragma once
 
-using namespace std;
-
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -16,8 +14,11 @@ using namespace std;
 #include "init/init.hpp"
 #include "ALNS/ALNS.hpp"
 #include "model/model.hpp"
+#include "IO_functions/IO_functions.hpp"
 
 #include "gurobi_c++.h"
+
+using namespace std;
 
 void model1();
 

@@ -14,6 +14,7 @@
 - Link CVRPSEP
 - Implement user callback
 - Use CVRPSEP in lazy callback
+- openMP
 
 ### Performance ideas for later
 - Read more variables in callback at once instead of one by one

@@ -14,9 +14,9 @@
 
 #include "gurobi_c++.h"
 
-using varMatrix = std::vector<vector<GRBVar>>;
+using varMatrix = std::vector<std::vector<GRBVar>>;
 using varArray  = std::vector<GRBVar>;
-using numMatrix = std::vector<vector<double>>;
+using numMatrix = std::vector<std::vector<double>>;
 
 class Model
 {
@@ -64,7 +64,7 @@ private:
     // Helper functions
     
     bool edgeExists (int idx, int jdx) const;
-    bool inTile (int idx_node, vector<int> const &tileSet) const;
+    bool inTile (int idx_node, std::vector<int> const &tileSet) const;
     
     double getCost (int idx_from, int idx_to) const;
 };
@@ -75,9 +75,9 @@ inline double Model::getCost (int idx_from, int idx_to) const
         if (e.from == idx_from && e.to == idx_to)
             return e.dist;
     
-    cout << idx_from << " - " << idx_to << endl;
+    std::cout << idx_from << " - " << idx_to << std::endl;
     
-    throw string("Model::getCost - Edge does not exist");
+    throw std::string("Model::getCost - Edge does not exist");
 }
 
 inline bool Model::edgeExists (int idx, int jdx) const
@@ -89,7 +89,7 @@ inline bool Model::edgeExists (int idx, int jdx) const
     return false;
 }
 
-inline bool Model::inTile (int idx_node, vector<int> const &tileSet) const
+inline bool Model::inTile (int idx_node, std::vector<int> const &tileSet) const
 {
     for (int v: tileSet)
         if (v == idx_node)

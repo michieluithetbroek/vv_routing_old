@@ -10,12 +10,13 @@
 int main()
 try
 {
-    ALNS(5);
+    ALNS(15);
     
 //    Model m(1, 5);
     
     return 0;
 }
+
 catch (std::string const &e)
 {
     cout << e << endl;
