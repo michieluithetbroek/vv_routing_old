@@ -56,7 +56,12 @@ bool ALNS::swap_pair(vector<int> &route)
                                      - d_cost[idx_prevA][idx_currB2]
                                      - d_cost[idx_currB1][idx_nextA]
                                      - d_cost[idx_prevB][idx_currA2]
-                                     - d_cost[idx_currA1][idx_nextB];
+                                     - d_cost[idx_currA1][idx_nextB]
+            
+                                     + d_cost[idx_currA1][idx_currA2]
+                                     - d_cost[idx_currA2][idx_currA1]
+                                     + d_cost[idx_currB1][idx_currB2]
+                                     - d_cost[idx_currB2][idx_currB1];
             
             // Option 3: reverse A
             
@@ -64,7 +69,10 @@ bool ALNS::swap_pair(vector<int> &route)
                                      - d_cost[idx_prevA][idx_currB1]
                                      - d_cost[idx_currB2][idx_nextA]
                                      - d_cost[idx_prevB][idx_currA2]
-                                     - d_cost[idx_currA1][idx_nextB];
+                                     - d_cost[idx_currA1][idx_nextB]
+            
+                                     + d_cost[idx_currA1][idx_currA2]
+                                     - d_cost[idx_currA2][idx_currA1];
             
             // Option 4: reverse B
             
@@ -72,7 +80,10 @@ bool ALNS::swap_pair(vector<int> &route)
                                      - d_cost[idx_prevA][idx_currB2]
                                      - d_cost[idx_currB1][idx_nextA]
                                      - d_cost[idx_prevB][idx_currA1]
-                                     - d_cost[idx_currA2][idx_nextB];
+                                     - d_cost[idx_currA2][idx_nextB]
+            
+                                     + d_cost[idx_currB1][idx_currB2]
+                                     - d_cost[idx_currB2][idx_currB1];
             
             // Store best moves
             
