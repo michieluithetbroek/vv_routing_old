@@ -9,11 +9,9 @@
 
 double ALNS::localsearch(vector<int> &route)
 {
-    bool finished = false;
-    
     double const cost1 = loopCost(route);
     
-    int cnt = 5000;
+    int cnt = 500;
     
     while (replace_node(route) and cnt-- >= 0);
     
@@ -23,6 +21,8 @@ double ALNS::localsearch(vector<int> &route)
     
     cnt = 1000;
     
+    bool finished = false;
+    
     while (not finished and cnt-- >= 0)
     {
         finished = true;
@@ -30,19 +30,14 @@ double ALNS::localsearch(vector<int> &route)
         if (relocate(route))
             finished = false;
         
-//        while (replace_node(route));
-
         if (swap(route))
             finished = false;
 
-        if (swap_pair(route))
-            finished = false;
+        swap_pair(route);
 
-        if (opt2(route))
-            finished = false;
+        opt2(route);
 
-        if (relocate_sequence(route))
-            finished = false;
+        relocate_sequence(route);
         
         if (relocate_tile(route))
             finished = false;
@@ -55,4 +50,3 @@ double ALNS::localsearch(vector<int> &route)
     
     return cost1 - cost2;
 }
-
