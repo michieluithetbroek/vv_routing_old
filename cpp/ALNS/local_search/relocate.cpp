@@ -9,6 +9,8 @@
 
 bool ALNS::relocate(vector<int> &route)
 {
+    auto const start = std::chrono::system_clock::now();
+    
     size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
@@ -74,6 +76,12 @@ bool ALNS::relocate(vector<int> &route)
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::relocate - incorrect saving\n");
+    
+    auto const end = std::chrono::system_clock::now();
+    
+    d_time_relocate += (end - start).count();
+    
+    ++d_count_relocate;
     
     return true;
 }

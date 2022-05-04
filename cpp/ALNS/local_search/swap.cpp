@@ -12,6 +12,8 @@
 
 bool ALNS::swap(vector<int> &route)
 {
+    auto const start = std::chrono::system_clock::now();
+    
     size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
@@ -67,6 +69,12 @@ bool ALNS::swap(vector<int> &route)
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::swap - incorrect saving\n");
+    
+    auto const end = std::chrono::system_clock::now();
+    
+    ++d_count_swap;
+    
+    d_time_swap += (end - start).count();
     
     return true;
 }

@@ -14,6 +14,8 @@
 
 bool ALNS::opt2(vector<int> &route)
 {
+    auto const start = std::chrono::system_clock::now();
+    
     size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
@@ -48,12 +50,12 @@ bool ALNS::opt2(vector<int> &route)
     if (bestSaving <= 0.001)
         return false;
     
-    double const cost1 = loopCost(route);
+//    double const cost1 = loopCost(route);
     
     std::reverse(begin(route) + bestIdxA + 1, begin(route) + bestIdxB + 1);
     
-    double const cost2 = loopCost(route);
-    double const diff  = cost1 - cost2;
+//    double const cost2 = loopCost(route);
+//    double const diff  = cost1 - cost2;
     
 //    cout << "2-OPT -----------------------------------------------------------" << endl
 //         << "   Saving:  " << bestSaving    << endl
@@ -67,5 +69,11 @@ bool ALNS::opt2(vector<int> &route)
 //             << "-----------------------------------------------------------" << endl
 //             << "-----------------------------------------------------------" << endl;
 //
+    ++d_count_opt2;
+    
+    auto const end = std::chrono::system_clock::now();
+    
+    d_time_opt2 += (end - start).count();
+    
     return true;
 }

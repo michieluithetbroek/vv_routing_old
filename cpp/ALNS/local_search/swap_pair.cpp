@@ -14,6 +14,8 @@
 
 bool ALNS::swap_pair(vector<int> &route)
 {
+    auto const start = std::chrono::system_clock::now();
+    
     size_t const n = size(route);
     
     double bestSaving = numeric_limits<double>::lowest();
@@ -78,7 +80,7 @@ bool ALNS::swap_pair(vector<int> &route)
             {
                 bestSaving = costSaving1;
                 bestOption = 1;
-                
+
                 bestIdxA = idxA;
                 bestIdxB = idxB;
             }
@@ -87,7 +89,7 @@ bool ALNS::swap_pair(vector<int> &route)
             {
                 bestSaving = costSaving2;
                 bestOption = 2;
-                
+
                 bestIdxA = idxA;
                 bestIdxB = idxB;
             }
@@ -96,7 +98,7 @@ bool ALNS::swap_pair(vector<int> &route)
             {
                 bestSaving = costSaving3;
                 bestOption = 3;
-                
+
                 bestIdxA = idxA;
                 bestIdxB = idxB;
             }
@@ -105,7 +107,7 @@ bool ALNS::swap_pair(vector<int> &route)
             {
                 bestSaving = costSaving4;
                 bestOption = 4;
-                
+
                 bestIdxA = idxA;
                 bestIdxB = idxB;
             }
@@ -161,14 +163,21 @@ bool ALNS::swap_pair(vector<int> &route)
     double const cost2 = loopCost(route);
     
 //    cout << "Swap pair ---------------------------------------------------------" << endl
-//         << "   Saving:  " << bestSaving << endl
-//         << "   Cost:    " << cost2      << endl
-//         << "   Option:  " << bestOption << endl
-//         << "   idx A:   " << bestIdxA   << endl
-//         << "   idx B:   " << bestIdxB   << endl << endl;
+//         << "   Saving:  " << bestSaving    << endl
+//         << "   diff:    " << cost1 - cost2 << endl
+//         << "   Cost:    " << cost2         << endl
+//         << "   Option:  " << bestOption    << endl
+//         << "   idx A:   " << bestIdxA      << endl
+//         << "   idx B:   " << bestIdxB      << endl << endl;
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::swap_pair - incorrect saving\n");
+    
+    auto const end = std::chrono::system_clock::now();
+    
+    ++d_count_swap_pair;
+    
+    d_time_swap_pair += (end - start).count();
     
     return true;
 }

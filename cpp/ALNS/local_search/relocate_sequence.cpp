@@ -9,6 +9,8 @@
 
 bool ALNS::relocate_sequence(vector<int> &route)
 {
+    auto const start = std::chrono::system_clock::now();
+    
     size_t const n = size(route);
     size_t const maxSize = 5;
     
@@ -87,6 +89,12 @@ bool ALNS::relocate_sequence(vector<int> &route)
     
     if (abs(cost1 - cost2 - bestSaving) > 0.001)
         throw string("ALNS::relocate_sequence - incorrect saving\n");
+    
+    ++d_count_relocate_sequence;
+    
+    auto const end = std::chrono::system_clock::now();
+    
+    d_time_relocate_sequence += (end - start).count();
     
     return true;
 }

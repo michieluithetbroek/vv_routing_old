@@ -58,6 +58,30 @@ class ALNS
     int const d_seed;
     std::mt19937 d_generator;
     
+    // Internal timers
+    
+    double d_time_replace_node      = 0;
+    double d_time_relocate          = 0;
+    double d_time_relocate_tile     = 0;
+    double d_time_relocate_tiles    = 0;
+    double d_time_relocate_sequence = 0;
+    double d_time_swap              = 0;
+    double d_time_swap_pair         = 0;
+    double d_time_opt2              = 0;
+    double d_time_loopCost          = 0;
+    
+    int d_count_replace_node      = 0;
+    int d_count_relocate          = 0;
+    int d_count_relocate_tile     = 0;
+    int d_count_relocate_tiles    = 0;
+    int d_count_relocate_sequence = 0;
+    int d_count_swap              = 0;
+    int d_count_swap_pair         = 0;
+    int d_count_opt2              = 0;
+    
+    int cnt9 = 0;
+    
+    
 public:
     ALNS(Init const init);
     
@@ -80,10 +104,12 @@ private:
     
     bool relocate          (std::vector<int> &route);
     bool relocate_tile     (std::vector<int> &route);
+    bool relocate_tiles    (std::vector<int> &route);
     bool relocate_sequence (std::vector<int> &route);
     bool swap              (std::vector<int> &route);
     bool swap_pair         (std::vector<int> &route);
     bool opt2              (std::vector<int> &route);
+    bool replace_node      (std::vector<int> &route);
     
     // Destroy operators
     
@@ -97,7 +123,7 @@ private:
     
     // Helper function
     
-    double loopCost(std::vector<int> const &route) const;
+    double loopCost(std::vector<int> const &route);
     void printRoute() const;
     
     Result get_CI      (std::vector<int> const &route, int const idx_node) const;
@@ -112,8 +138,10 @@ inline void ALNS::printRoute() const
     std::cout << '\n';
 }
 
-inline double ALNS::loopCost(std::vector<int> const &route) const
+inline double ALNS::loopCost(std::vector<int> const &route)
 {
+    auto start = std::chrono::system_clock::now();
+    
     size_t const n = size(route);
     
     double cost = d_cost[route[n - 1]][route[0]];
@@ -125,6 +153,10 @@ inline double ALNS::loopCost(std::vector<int> const &route) const
         
         cost += d_cost[from][to];
     }
+    
+    auto end = std::chrono::system_clock::now();
+    
+    d_time_loopCost += (end - start).count();
     
     return cost;
 }

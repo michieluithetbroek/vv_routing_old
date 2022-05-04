@@ -3,14 +3,7 @@
 //  vv_routing
 //
 // Removes a node and uses CFI to replace this by any node of
-// the same tile.
-//
-//  Created by Michiel uit het Broek on 29/04/2022.
-//
-
-//
-//  relocate.cpp
-//  vv_routing
+// the same tile. Best improvement is performed (expensive!)
 //
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
@@ -19,15 +12,18 @@
 
 bool ALNS::relocate_tile(vector<int> &route)
 {
-    size_t const n = size(route);
+    auto const start = std::chrono::system_clock::now();
     
     double bestSaving = numeric_limits<double>::lowest();
+    
     size_t bestIdxPos_out = -1;
     size_t bestIdxPos_in  = -1;
     int bestIdxNode_out   = -1;
     int bestIdxNode_in    = -1;
     
-    vector<int> bestRoute;
+    bool finished = false;
+    
+    size_t const n = size(route);
     
     for (size_t idx_out = 1; idx_out < n - 1; ++idx_out)
     {
@@ -68,8 +64,20 @@ bool ALNS::relocate_tile(vector<int> &route)
                     bestIdxPos_in   = idx_in;
                     bestIdxPos_out  = idx_out;
                 }
+                
+                if (bestSaving > 200)
+                    finished = true;
+                
+                if (finished)
+                    break;
             }
+            
+            if (finished)
+                break;
         }
+        
+        if (finished)
+            break;
     }
 
     if (bestSaving <= 0.01)
@@ -92,6 +100,13 @@ bool ALNS::relocate_tile(vector<int> &route)
     
     if (abs(costOld - costNew - bestSaving) > 0.001)
         throw string("ALNS::relocate_tile - incorrect saving\n");
+    
+    
+    auto const end = std::chrono::system_clock::now();
+    
+    d_time_relocate_tile += (end - start).count();
+    
+    ++d_count_relocate_tile;
     
     return true;
 }
