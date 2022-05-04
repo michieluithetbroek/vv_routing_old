@@ -41,10 +41,11 @@ class ALNS
     
     int const d_nNodes;
     int const d_nTiles;
+    int const d_maxTileSize;
     
     std::vector<std::vector<double>> const d_cost;
     
-    std::vector<std::vector<int>> const d_tileSets_perTile;
+    std::vector<std::vector<int>>  d_tileSets_perTile;
     std::vector<int>              const d_tileSets_perNode;
     
     // Solution
@@ -63,6 +64,10 @@ public:
     double localsearch(std::vector<int> &route);
     
 private:
+    
+    // Other functions
+    
+    void reduce_tilesets();
     
     // Initial solutions
     

@@ -11,6 +11,7 @@ ALNS::ALNS(Init const init)
 :
   d_nNodes           (init.nNodes()),
   d_nTiles           (init.nTileSets()),
+  d_maxTileSize      (0),
   d_cost             (init.cost()),
   d_tileSets_perTile (init.tileSets()),
   d_tileSets_perNode (init.tileSets_perNode()),
@@ -20,6 +21,8 @@ ALNS::ALNS(Init const init)
     cout << fixed << setprecision(2)
          << "Seed = " << d_seed << endl
          << endl;
+    
+    reduce_tilesets();
     
     bool const printRoutes = false;
     
@@ -35,3 +38,5 @@ ALNS::ALNS(Init const init)
     
     printRoute();
 }
+
+
