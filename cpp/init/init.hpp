@@ -29,6 +29,8 @@ class Init
     std::vector<std::vector<int>> d_tileSets_perTile;
     std::vector<int> d_tileSets_perNode;
     
+    std::vector<std::vector<bool>> d_tileConnnected;
+    
     std::string d_filePath;
     
     int d_nNodes;
@@ -39,7 +41,7 @@ class Init
     
 public:
     
-    Init(int idx_inst);
+    Init(int idx_inst, double maxDist);
     
     // Getters
     
@@ -52,6 +54,8 @@ public:
     std::vector<Edge> edges() const;
     std::vector<std::vector<int>> tileSets() const;
     std::vector<int> tileSets_perNode() const;
+    std::vector<std::vector<bool>> tileConnected() const;
+    
     
     std::vector<std::vector<double>> cost() const;
     
@@ -70,6 +74,9 @@ private:
 
     void create_tileSet_perNode();
     void create_costMatrix();
+    void create_tileConnected(double const maxDist);
+    
+    bool tilesConnected(int idx_tileA, int idx_tileB, double maxDist) const;
 };
 
 inline int Init::nNodes() const
@@ -110,4 +117,22 @@ inline std::vector<int> Init::tileSets_perNode() const
 inline std::vector<std::vector<double>> Init::cost() const
 {
     return d_cost;
+}
+
+inline std::vector<std::vector<bool>> Init::tileConnected() const
+{
+    return d_tileConnnected;
+}
+
+inline bool Init::tilesConnected(int const idx_tileA, int const idx_tileB, double maxDist) const
+{
+    auto const tileA = d_tileSets_perTile[idx_tileA];
+    auto const tileB = d_tileSets_perTile[idx_tileB];
+    
+    for (int idx_nodeA: tileA)
+        for (int idx_nodeB: tileB)
+            if (d_cost[idx_nodeA][idx_nodeB] <= maxDist)
+                return true;
+    
+    return false;
 }

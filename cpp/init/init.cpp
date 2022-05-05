@@ -7,7 +7,7 @@
 
 #include "init.ih"
 
-Init::Init(int idx_inst)
+Init::Init(int idx_inst, double maxDist)
 :
   d_filePath ("/Users/michiel/Documents/github/vv_routing/data/"
               + to_string(idx_inst))
@@ -23,6 +23,8 @@ Init::Init(int idx_inst)
     set_nNodes();
     
     create_tileSet_perNode();
+    
+    create_tileConnected(maxDist);
     
 //    printTileData();
 }
