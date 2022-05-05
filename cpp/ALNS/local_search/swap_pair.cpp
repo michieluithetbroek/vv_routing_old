@@ -10,9 +10,9 @@
 //  Created by Michiel uit het Broek on 01/05/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-bool ALNS::swap_pair(vector<int> &route)
+bool Heuristic::swap_pair(vector<int> &route)
 {
     auto const start = std::chrono::system_clock::now();
     
@@ -126,7 +126,13 @@ bool ALNS::swap_pair(vector<int> &route)
     }
     
     if (bestSaving <= 0.001)
+    {
+        auto const end = std::chrono::system_clock::now();
+        
+        d_time_swap_pair += (end - start).count();
+        
         return false;
+    }
     
     double const cost1 = loopCost(route);
     

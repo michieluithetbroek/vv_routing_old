@@ -8,19 +8,20 @@
 //  Created by Michiel uit het Broek on 03/05/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-double ALNS::CFI_fixed (vector<int> &route, vector<int> const &tiles)
+double Heuristic::CFI_fixed (vector<int> &route_in, vector<int> const &tiles)
 {
     double cost = 0;
     
     for (int idx_tile: tiles)
     {
-        auto const result = get_CI_tile(route, idx_tile);
+        auto const result = get_CI_tile(route_in, idx_tile);
         
         cost += result.cost;
         
-        route.insert(begin(route) + result.idx_pos + 1, result.idx_node);
+        route_in.insert(begin(route_in) + result.idx_pos + 1,
+                        result.idx_node);
     }
     
     return cost;

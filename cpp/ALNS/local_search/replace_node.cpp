@@ -7,9 +7,9 @@
 //  Created by Michiel uit het Broek on 03/05/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-bool ALNS::replace_node (vector<int> &route)
+bool Heuristic::replace_node (vector<int> &route)
 {
     auto const start = std::chrono::system_clock::now();
     

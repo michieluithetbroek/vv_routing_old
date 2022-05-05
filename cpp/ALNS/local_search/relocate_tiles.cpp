@@ -8,9 +8,9 @@
 //  Created by Michiel uit het Broek on 03/05/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-bool ALNS::relocate_tiles (vector<int> &route)
+bool Heuristic::relocate_tiles (vector<int> &route)
 {
     auto const start = std::chrono::system_clock::now();
     
@@ -35,18 +35,18 @@ bool ALNS::relocate_tiles (vector<int> &route)
                                 + d_cost[idx_curr][idx_next]
                                 - d_cost[idx_prev][idx_next];
         
-        if (costSaving < bestSaving)
-            continue;
-        
         auto tmp_route = route;
         
         tmp_route.erase(begin(tmp_route) + idx_out);
         
         int const idx_tile = d_tileSets_perNode[idx_curr];
-        
-        for (int const idx_node: d_tileSets_perTile[idx_tile])
+
+        for (size_t idx_in = 0; idx_in < n - 1; ++idx_in)
         {
-            for (size_t idx_in = 0; idx_in < size(tmp_route) - 1; ++idx_in)
+            if (not d_tilesConnected[idx_tile][d_tileSets_perNode[tmp_route[idx_in]]])
+                continue;
+            
+            for (int const idx_node: d_tileSets_perTile[idx_tile])
             {
                 int const idx_prev_in = tmp_route[idx_in];
                 int const idx_next_in = tmp_route[idx_in + 1];

@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-bool ALNS::relocate(vector<int> &route)
+bool Heuristic::relocate(vector<int> &route)
 {
     auto const start = std::chrono::system_clock::now();
     
@@ -53,7 +53,13 @@ bool ALNS::relocate(vector<int> &route)
     }
     
     if (bestIdxOut == -1 or bestSaving <= 0.001)
+    {
+        auto const end = std::chrono::system_clock::now();
+        
+        d_time_relocate += (end - start).count();
+    
         return false;
+    }
     
     double const cost1 = loopCost(route);
     

@@ -8,9 +8,9 @@
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-bool ALNS::relocate_tile(vector<int> &route)
+bool Heuristic::relocate_tile(vector<int> &route)
 {
     auto const start = std::chrono::system_clock::now();
     
@@ -44,13 +44,13 @@ bool ALNS::relocate_tile(vector<int> &route)
         
         int const idx_tile = d_tileSets_perNode[idx_curr];
         
-        for (int const idx_node: d_tileSets_perTile[idx_tile])
+        for (size_t idx_in = 0; idx_in < size(tmp_route) - 1; ++idx_in)
         {
-            for (size_t idx_in = 0; idx_in < size(tmp_route) - 1; ++idx_in)
+            int const idx_prev_in = tmp_route[idx_in];
+            int const idx_next_in = tmp_route[idx_in + 1];
+ 
+            for (int const idx_node: d_tileSets_perTile[idx_tile])
             {
-                int const idx_prev_in = tmp_route[idx_in];
-                int const idx_next_in = tmp_route[idx_in + 1];
-
                 double const costInsert = d_cost[idx_prev_in][idx_node]
                                         + d_cost[idx_node][idx_next_in]
                                         - d_cost[idx_prev_in][idx_next_in];
@@ -71,7 +71,7 @@ bool ALNS::relocate_tile(vector<int> &route)
                 if (finished)
                     break;
             }
-            
+                
             if (finished)
                 break;
         }
@@ -81,7 +81,13 @@ bool ALNS::relocate_tile(vector<int> &route)
     }
 
     if (bestSaving <= 0.01)
+    {
+        auto const end = std::chrono::system_clock::now();
+        
+        d_time_relocate_tile += (end - start).count();
+        
         return false;
+    }
 
     double const costOld = loopCost(route);
     
@@ -90,16 +96,19 @@ bool ALNS::relocate_tile(vector<int> &route)
     
     double const costNew = loopCost(route);
     
-//    cout << "Relocate tile" << endl
-//         << "   saving:     " << bestSaving      << endl
-//         << "   Cost:       " << costNew         << endl
-//         << "   Node out:   " << bestIdxNode_out << endl
-//         << "   Node in:    " << bestIdxNode_in  << endl
-//         << "   Pos out:    " << bestIdxPos_out  << endl
-//         << "   Pos in:     " << bestIdxPos_in   << endl << endl;
-    
     if (abs(costOld - costNew - bestSaving) > 0.001)
+    {
+        cout << "Relocate tile" << endl
+             << "   saving:     " << bestSaving        << endl
+             << "   actual diff " << costOld - costNew << endl
+             << "   Cost:       " << costNew           << endl
+             << "   Node out:   " << bestIdxNode_out   << endl
+             << "   Node in:    " << bestIdxNode_in    << endl
+             << "   Pos out:    " << bestIdxPos_out    << endl
+             << "   Pos in:     " << bestIdxPos_in     << endl << endl;
+        
         throw string("ALNS::relocate_tile - incorrect saving\n");
+    }
     
     
     auto const end = std::chrono::system_clock::now();
