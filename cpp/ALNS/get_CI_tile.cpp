@@ -5,15 +5,15 @@
 //  Created by Michiel uit het Broek on 03/05/2022.
 //
 
-#include "ALNS.ih"
+#include "heuristic.ih"
 
-Result ALNS::get_CI_tile (vector<int> const &route, int const idx_tile) const
+Result Heuristic::get_CI_tile (vector<int> const &route_in, int const idx_tile) const
 {
     Result result;
     
     for (int const idx_node: d_tileSets_perTile[idx_tile])
     {
-        auto const result_CI = get_CI(route, idx_node);
+        auto const result_CI = get_CI(route_in, idx_node);
 
         if (result_CI.cost < result.cost)
         {

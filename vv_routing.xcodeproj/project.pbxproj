@@ -13,7 +13,7 @@
 		CC5A7982281A8A3300752F91 /* set_nNodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A7981281A8A3300752F91 /* set_nNodes.cpp */; };
 		CC5A7984281A8AEE00752F91 /* create_costMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A7983281A8AEE00752F91 /* create_costMatrix.cpp */; };
 		CC5A7986281A95F500752F91 /* printTileData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A7985281A95F500752F91 /* printTileData.cpp */; };
-		CC5A7989281A9A7200752F91 /* ALNS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A7987281A9A7200752F91 /* ALNS.cpp */; };
+		CC5A7989281A9A7200752F91 /* heuristic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A7987281A9A7200752F91 /* heuristic.cpp */; };
 		CC5A798D281B09F700752F91 /* create_tileSet_perNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A798C281B09F700752F91 /* create_tileSet_perNode.cpp */; };
 		CC5A798F281B11D000752F91 /* initial_random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A798E281B11D000752F91 /* initial_random.cpp */; };
 		CC5A7991281B222000752F91 /* initial_CFI_A.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5A7990281B222000752F91 /* initial_CFI_A.cpp */; };
@@ -52,6 +52,9 @@
 		CC7F97A22821CC51009429E2 /* relocate_tiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97A12821CC51009429E2 /* relocate_tiles.cpp */; };
 		CC7F97A42821D6B2009429E2 /* replace_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97A32821D6B2009429E2 /* replace_node.cpp */; };
 		CC7F97A62822CC1F009429E2 /* reduce_tilesets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97A52822CC1F009429E2 /* reduce_tilesets.cpp */; };
+		CC7F97A828233445009429E2 /* create_tileConnected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97A728233445009429E2 /* create_tileConnected.cpp */; };
+		CC7F97AA28243F6F009429E2 /* ALNS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97A928243F6F009429E2 /* ALNS.cpp */; };
+		CC7F97AE2824621D009429E2 /* InitOSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97AC2824621D009429E2 /* InitOSM.cpp */; };
 		CCB1812528073CAF00FF79D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCB1812428073CAF00FF79D4 /* main.cpp */; };
 		CCB18163280769D900FF79D4 /* libgurobi95.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB18161280769D900FF79D4 /* libgurobi95.dylib */; };
 		CCB18164280769D900FF79D4 /* libgurobi_c++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB18162280769D900FF79D4 /* libgurobi_c++.a */; };
@@ -83,9 +86,9 @@
 		CC5A7981281A8A3300752F91 /* set_nNodes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = set_nNodes.cpp; sourceTree = "<group>"; };
 		CC5A7983281A8AEE00752F91 /* create_costMatrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_costMatrix.cpp; sourceTree = "<group>"; };
 		CC5A7985281A95F500752F91 /* printTileData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = printTileData.cpp; sourceTree = "<group>"; };
-		CC5A7987281A9A7200752F91 /* ALNS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ALNS.cpp; sourceTree = "<group>"; };
-		CC5A7988281A9A7200752F91 /* ALNS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ALNS.hpp; sourceTree = "<group>"; };
-		CC5A798B281A9AB700752F91 /* ALNS.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = ALNS.ih; sourceTree = "<group>"; };
+		CC5A7987281A9A7200752F91 /* heuristic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = heuristic.cpp; sourceTree = "<group>"; };
+		CC5A7988281A9A7200752F91 /* heuristic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = heuristic.hpp; sourceTree = "<group>"; };
+		CC5A798B281A9AB700752F91 /* heuristic.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = heuristic.ih; sourceTree = "<group>"; };
 		CC5A798C281B09F700752F91 /* create_tileSet_perNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_tileSet_perNode.cpp; sourceTree = "<group>"; };
 		CC5A798E281B11D000752F91 /* initial_random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initial_random.cpp; sourceTree = "<group>"; };
 		CC5A7990281B222000752F91 /* initial_CFI_A.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initial_CFI_A.cpp; sourceTree = "<group>"; };
@@ -135,6 +138,10 @@
 		CC7F97A12821CC51009429E2 /* relocate_tiles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = relocate_tiles.cpp; sourceTree = "<group>"; };
 		CC7F97A32821D6B2009429E2 /* replace_node.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = replace_node.cpp; sourceTree = "<group>"; };
 		CC7F97A52822CC1F009429E2 /* reduce_tilesets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = reduce_tilesets.cpp; sourceTree = "<group>"; };
+		CC7F97A728233445009429E2 /* create_tileConnected.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_tileConnected.cpp; sourceTree = "<group>"; };
+		CC7F97A928243F6F009429E2 /* ALNS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ALNS.cpp; sourceTree = "<group>"; };
+		CC7F97AC2824621D009429E2 /* InitOSM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InitOSM.cpp; sourceTree = "<group>"; };
+		CC7F97AD2824621D009429E2 /* InitOSM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InitOSM.hpp; sourceTree = "<group>"; };
 		CCB09CFF281EF0740015B50D /* 15_tileSets */ = {isa = PBXFileReference; lastKnownFileType = text; path = 15_tileSets; sourceTree = "<group>"; };
 		CCB09D00281EF0740015B50D /* 15_distances */ = {isa = PBXFileReference; lastKnownFileType = text; path = 15_distances; sourceTree = "<group>"; };
 		CCB1812128073CAF00FF79D4 /* vv_routing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vv_routing; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +170,7 @@
 			children = (
 				CC5A7979281A81CC00752F91 /* init.cpp */,
 				CC5A797A281A81CC00752F91 /* init.hpp */,
+				CC7F97A728233445009429E2 /* create_tileConnected.cpp */,
 				CC5A797C281A83E600752F91 /* init.ih */,
 				CC5A797D281A85F100752F91 /* read_tileSets_long.cpp */,
 				CC5A797F281A888E00752F91 /* read_edges.cpp */,
@@ -183,13 +191,14 @@
 				CC68A5AB281F194100C3563C /* local_search */,
 				CC68A5AC281F1C0A00C3563C /* operator_destroy */,
 				CC7F979A2821A769009429E2 /* operator_repair */,
-				CC5A7987281A9A7200752F91 /* ALNS.cpp */,
-				CC5A7988281A9A7200752F91 /* ALNS.hpp */,
-				CC5A798B281A9AB700752F91 /* ALNS.ih */,
+				CC5A7987281A9A7200752F91 /* heuristic.cpp */,
+				CC5A7988281A9A7200752F91 /* heuristic.hpp */,
+				CC5A798B281A9AB700752F91 /* heuristic.ih */,
 				CC7F97A52822CC1F009429E2 /* reduce_tilesets.cpp */,
 				CC7F9795281F3DE9009429E2 /* localsearch.cpp */,
 				CC7F979D2821A8CC009429E2 /* get_CI.cpp */,
 				CC7F979F2821B63D009429E2 /* get_CI_tile.cpp */,
+				CC7F97A928243F6F009429E2 /* ALNS.cpp */,
 			);
 			path = ALNS;
 			sourceTree = "<group>";
@@ -281,6 +290,15 @@
 			path = operator_repair;
 			sourceTree = "<group>";
 		};
+		CC7F97AB282461F7009429E2 /* initOSM */ = {
+			isa = PBXGroup;
+			children = (
+				CC7F97AC2824621D009429E2 /* InitOSM.cpp */,
+				CC7F97AD2824621D009429E2 /* InitOSM.hpp */,
+			);
+			path = initOSM;
+			sourceTree = "<group>";
+		};
 		CCB1811828073CAF00FF79D4 = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +320,7 @@
 		CCB1812328073CAF00FF79D4 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				CC7F97AB282461F7009429E2 /* initOSM */,
 				CC7F979728217001009429E2 /* IO_functions */,
 				CC5A7978281A81BE00752F91 /* init */,
 				CC72CE052808872D00D1D8E2 /* model */,
@@ -426,11 +445,12 @@
 				CC72CE28280EB0D000D1D8E2 /* createConstraint_oneWay.cpp in Sources */,
 				CC5A7993281B2B1D00752F91 /* initial_CFI_B.cpp in Sources */,
 				CC72CE192809F1BD00D1D8E2 /* exportSolution.cpp in Sources */,
+				CC7F97A828233445009429E2 /* create_tileConnected.cpp in Sources */,
 				CC5A7984281A8AEE00752F91 /* create_costMatrix.cpp in Sources */,
 				CC68A5AE281F1C2200C3563C /* destroy_random.cpp in Sources */,
 				CC72CE1D280C417A00D1D8E2 /* mycallback.cpp in Sources */,
 				CC72CE0B2808A46200D1D8E2 /* createVariables.cpp in Sources */,
-				CC5A7989281A9A7200752F91 /* ALNS.cpp in Sources */,
+				CC5A7989281A9A7200752F91 /* heuristic.cpp in Sources */,
 				CC7F979C2821A7AE009429E2 /* CFI_fixed.cpp in Sources */,
 				CC72CE24280C43E800D1D8E2 /* callback.cpp in Sources */,
 				CC68A5B5281F1E2500C3563C /* swap.cpp in Sources */,
@@ -441,9 +461,11 @@
 				CC72CE22280C429F00D1D8E2 /* callback_lazy.cpp in Sources */,
 				CC7F97A22821CC51009429E2 /* relocate_tiles.cpp in Sources */,
 				CCB1816628076AF700FF79D4 /* model1.cpp in Sources */,
+				CC7F97AA28243F6F009429E2 /* ALNS.cpp in Sources */,
 				CC7F9794281F3444009429E2 /* relocate_sequence.cpp in Sources */,
 				CC72CE152808D70600D1D8E2 /* createConstraints_MTZ.cpp in Sources */,
 				CC72CE112808B88400D1D8E2 /* createConstraints.cpp in Sources */,
+				CC7F97AE2824621D009429E2 /* InitOSM.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +478,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -516,7 +538,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;

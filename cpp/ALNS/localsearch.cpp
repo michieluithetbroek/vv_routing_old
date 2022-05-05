@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 02/05/2022.
 //
 
-#include "ALNS.ih"
+#include "heuristic.ih"
 
-double ALNS::localsearch(vector<int> &route)
+double Heuristic::localsearch(vector<int> &route)
 {
     double const cost1 = loopCost(route);
     
@@ -19,7 +19,7 @@ double ALNS::localsearch(vector<int> &route)
     
     while (relocate(route) and cnt-- >= 0);
     
-    cnt = 1000;
+    cnt = 10000;
     
     bool finished = false;
     

@@ -2,117 +2,65 @@
 //  ALNS.cpp
 //  vv_routing
 //
-//  Created by Michiel uit het Broek on 28/04/2022.
+//  Created by Michiel uit het Broek on 05/05/2022.
 //
 
-#include "ALNS.ih"
+#include "heuristic.ih"
 
-ALNS::ALNS(Init const init)
-:
-  d_nNodes           (init.nNodes()),
-  d_nTiles           (init.nTileSets()),
-  d_maxTileSize      (0),
-  d_cost             (init.cost()),
-  d_tileSets_perTile (init.tileSets()),
-  d_tileSets_perNode (init.tileSets_perNode()),
-  d_seed             (std::random_device()()),
-  d_generator        (1)
+double Heuristic::ALNS(vector<int> &route_in)
 {
-    auto const start = std::chrono::system_clock::now();
+    int constexpr nRep = 500;
     
-    cout << fixed << setprecision(2)
-         << "Seed = " << d_seed << endl
-         << endl;
+    double const cost1 = loopCost(route_in);
     
-    reduce_tilesets();
+    double currCost = loopCost(route_in);
     
-    bool const printRoutes = false;
-    
-//    initial_random (printRoutes);
-//    initial_CFI_A  (printRoutes);
-//    initial_CFI_B  (printRoutes);
-    
-    initial_CFI_A2 (printRoutes);
-
-    printRoute();
-    
-    cout << "\ncost start: " << loopCost(d_route) << "\n\n";
-    
-    
-    double currCost = loopCost(d_route);
-    
-    for (int idx = 0; idx < 100; ++idx)
+    for (int idx = 0; idx < nRep; ++idx)
     {
         for (int jdx = 1; jdx <= 10; ++jdx)
         {
-            auto route = d_route;
+            auto route_tmp = route_in;
             
-            auto tiles = destroy_random(route, jdx);
+            auto tiles = destroy_random(route_tmp, jdx);
 
             shuffle(begin(tiles), end(tiles), d_generator);
             
-            CFI_fixed(route, tiles);
+            CFI_fixed(route_tmp, tiles);
             
-            double const cost = loopCost(route);
+            double const cost = loopCost(route_tmp);
             
             if (cost < currCost)
             {
                 currCost = cost;
-                d_route = route;
+                route_in = route_tmp;
                 
-                cout << setw(4) << idx << setw(4) << jdx << setw(10) << cost << endl;
+//                cout << setw(4) << idx << setw(4) << jdx << setw(10) << cost << endl;
             }
         }
         
         for (int jdx = 1; jdx <= 10; ++jdx)
         {
-            auto route = d_route;
+            auto route_tmp = route_in;
             
-            auto tiles = destroy_random_sequence(route, jdx);
+            auto tiles = destroy_random_sequence(route_tmp, jdx);
 
             shuffle(begin(tiles), end(tiles), d_generator);
             
-            CFI_fixed(route, tiles);
+            CFI_fixed(route_tmp, tiles);
             
-            double const cost = loopCost(route);
+            double const cost = loopCost(route_tmp);
             
             if (cost < currCost)
             {
                 currCost = cost;
-                d_route = route;
+                route_in = route_tmp;
                 
-                cout << setw(4) << idx << setw(4) << jdx << " seq" << setw(10) << cost << endl;
+//                cout << setw(4) << idx << setw(4) << jdx << " seq" << setw(10) << cost << endl;
             }
         }
     }
     
-    auto const end = std::chrono::system_clock::now();
+    double const cost2 = loopCost(route_in);
     
-    cout << "\nFinal solution\n\n";
-    
-    printRoute();
-    
-    cout << "Cost = " << loopCost(d_route) << endl;
-    
-    cout << "\nTimings\n"
-         << "  Replace        " << setw(8)  << d_time_replace_node / 1000000
-                                << setw(10) << d_count_replace_node << "\n"
-         << "  Relocate       " << setw(8)  << d_time_relocate / 1000000
-                                << setw(10) << d_count_relocate << "\n"
-         << "  Relocate tile  " << setw(8)  << d_time_relocate_tile / 1000000
-                                << setw(10) << d_count_relocate_tile << "\n"
-         << "  Relocate tiles " << setw(8)  << d_time_relocate_tiles / 1000000
-                                << setw(10) << d_count_relocate_tiles << "\n"
-         << "  Relocate seq   " << setw(8)  << d_time_relocate_sequence / 1000000
-                                << setw(10) << d_count_relocate_sequence << "\n"
-         << "  Swap           " << setw(8)  << d_time_swap / 1000000
-                                << setw(10) << d_count_swap << "\n"
-         << "  Swap pair      " << setw(8)  << d_time_swap_pair / 1000000
-                                << setw(10) << d_count_swap_pair << "\n"
-         << "  2-opt          " << setw(8)  << d_time_opt2 / 1000000
-                                << setw(10) << d_count_opt2 << "\n\n"
-         << "  Loop costs     " << setw(8)  << d_time_loopCost / 1000000 << "\n"
-         << "  Total          " << setw(8)  << static_cast<double>((end - start).count()) / 1000000 << endl;
+    return cost1 - cost2;
 }
-
-

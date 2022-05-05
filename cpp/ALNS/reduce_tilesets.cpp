@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 04/05/2022.
 //
 
-#include "ALNS.ih"
+#include "heuristic.ih"
 
-void ALNS::reduce_tilesets()
+void Heuristic::reduce_tilesets()
 {
     if (d_maxTileSize <= 0)
         return;

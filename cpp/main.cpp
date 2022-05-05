@@ -7,10 +7,13 @@
 
 #include "main.hpp"
 
+
+
 int main()
 try
 {
-    ALNS(15);
+    Heuristic({9, 20});
+
     
 //    Model m(1, 5);
     
