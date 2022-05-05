@@ -8,11 +8,24 @@
 //  Created by Michiel uit het Broek on 29/04/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-void ALNS::initial_CFI_A2(bool const printRoutes)
+void Heuristic::initial_CFI_A2(bool const printRoutes)
 {
-    int const nRep = 500;
+    int constexpr nRep = 200;
+    
+    bool constexpr applyALNS = true;
+    bool constexpr applyLS2  = true;
+    
+    cout << "   "
+         << setw(6)  << "it"          << " "
+         << setw(10) << "Time"        << " "
+         << setw(15) << "Length"      << " | "
+         << setw(12) << "Saving LS"   << " "
+         << setw(12) << "Saving ALNS" << " "
+         << setw(12) << "Saving LS"   << "\n";
+ 
+    auto const start = std::chrono::system_clock::now();
     
     double bestCost = numeric_limits<double>::max();
     vector<int> bestRoute;
@@ -90,7 +103,9 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
         // --- Improve route                        ---
         // --------------------------------------------
         
-        double const saving_LS = localsearch(route);
+        double const saving_LS1  = localsearch(route);
+        double const saving_ALNS = (applyALNS ? ALNS(route) : 0);
+        double const saving_LS2  = (applyLS2  ? localsearch(route) : 0);
         
         
         
@@ -100,15 +115,36 @@ void ALNS::initial_CFI_A2(bool const printRoutes)
         
         double const cost = loopCost(route);
         
-        if (cost < bestCost)
+        if (cost < bestCost or idx_rep == nRep - 1)
         {
-            bestCost  = cost;
-            bestRoute = route;
+            if (cost < bestCost)
+            {
+                bestCost  = cost;
+                bestRoute = route;
+            }
+            
+            auto const end = std::chrono::system_clock::now();
+            
+            auto const duration = end - start;
+            
+            auto const hrs  = duration_cast<hours>(duration);
+            auto const mins = duration_cast<minutes>(duration - hrs);
+            auto const secs = duration_cast<seconds>(duration - hrs - mins);
+             
+            stringstream stime;
+            
+            stime << fixed
+                  << setw(2) << setfill('0') << hrs.count()  << ":"
+                  << setw(2) << setfill('0') << mins.count() << "."
+                  << setw(2) << setfill('0') << secs.count();
             
             cout << "A2 "
-                 << setw(5)  << idx_rep << " "
-                 << setw(10) << cost << " | "
-                 << setw(10) << saving_LS << " ";
+                 << setw(6)  << idx_rep     << " "
+                 << setw(10) << stime.str() << " "
+                 << setw(12) << (double) ((int) bestCost / 10) / 100  << " km | "
+                 << setw(12) << saving_LS1  << " "
+                 << setw(12) << saving_ALNS << " "
+                 << setw(12) << saving_LS2  << " ";
 
             if (printRoutes)
                 for (int v: route)

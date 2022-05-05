@@ -8,9 +8,9 @@
 //  Created by Michiel uit het Broek on 28/04/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-void ALNS::initial_CFI_A(bool const printRoutes)
+void Heuristic::initial_CFI_A(bool const printRoutes)
 {
     int const nRep = 1000;
     

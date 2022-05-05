@@ -5,9 +5,9 @@
 //  Created by Michiel uit het Broek on 28/04/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-void ALNS::initial_random(bool const printRoutes)
+void Heuristic::initial_random(bool const printRoutes)
 {
     int const nRep1 = 10;
     int const nRep2 = 25;
