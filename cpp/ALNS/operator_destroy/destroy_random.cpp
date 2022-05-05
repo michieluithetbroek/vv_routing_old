@@ -7,9 +7,9 @@
 //  Created by Michiel uit het Broek on 01/05/2022.
 //
 
-#include "./../ALNS.ih"
+#include "./../heuristic.ih"
 
-vector<int> ALNS::destroy_random(vector<int> &route, int const nRemovals)
+vector<int> Heuristic::destroy_random(vector<int> &route, int const nRemovals)
 {
     vector<int> indicesTiles;
     indicesTiles.reserve(nRemovals);
