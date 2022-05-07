@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "init/init.hpp"
-#include "ALNS/Heuristic.hpp"
+#include "ALNS/heuristic.hpp"
 #include "model/model.hpp"
 #include "IO_functions/IO_functions.hpp"
 

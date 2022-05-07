@@ -7,6 +7,6 @@
 
 #pragma once
 
-using namespace std;
-
 #include "mycallback.hpp"
+
+using namespace std;

@@ -524,13 +524,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				"LD_MAP_FILE_PATH[arch=*]" = "$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -578,11 +581,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -591,13 +597,31 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /Library/gurobi951/macos_universal2/include;
+				HEADER_SEARCH_PATHS = (
+					/Library/gurobi951/macos_universal2/include,
+					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
+					/opt/local/include,
+					opt/homebrew/Cellar/expat/2.4.7/include,
+					/opt/homebrew/Cellar/bzip2/1.0.8/include,
+					/opt/homebrew/Cellar/protobuf/3.19.4/include,
+					/opt/homebrew/Cellar/gdal/3.4.3/include,
+					/opt/homebrew/Cellar/zlib/1.2.12/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/lib,
 					"$(LOCAL_LIBRARY_DIR)/gurobi951/macos_universal2/lib",
+					/opt/homebrew/Cellar/bzip2/1.0.8/lib,
+					/opt/homebrew/Cellar/protobuf/3.19.4/lib,
+					/opt/homebrew/Cellar/gdal/3.4.3/lib,
 				);
 				OTHER_CFLAGS = "-DIL_STD";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lexpat",
+					"-lbz2",
+					"-lprotobuf",
+					"-lgdal",
+					"-lz",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -607,13 +631,31 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /Library/gurobi951/macos_universal2/include;
+				HEADER_SEARCH_PATHS = (
+					/Library/gurobi951/macos_universal2/include,
+					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
+					/opt/local/include,
+					opt/homebrew/Cellar/expat/2.4.7/include,
+					/opt/homebrew/Cellar/bzip2/1.0.8/include,
+					/opt/homebrew/Cellar/protobuf/3.19.4/include,
+					/opt/homebrew/Cellar/gdal/3.4.3/include,
+					/opt/homebrew/Cellar/zlib/1.2.12/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/lib,
 					"$(LOCAL_LIBRARY_DIR)/gurobi951/macos_universal2/lib",
+					/opt/homebrew/Cellar/bzip2/1.0.8/lib,
+					/opt/homebrew/Cellar/protobuf/3.19.4/lib,
+					/opt/homebrew/Cellar/gdal/3.4.3/lib,
 				);
 				OTHER_CFLAGS = "-DIL_STD";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lexpat",
+					"-lbz2",
+					"-lprotobuf",
+					"-lgdal",
+					"-lz",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
