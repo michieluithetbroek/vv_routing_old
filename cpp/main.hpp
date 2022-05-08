@@ -11,12 +11,15 @@
 #include <fstream>
 #include <vector>
 
+#include "gurobi_c++.h"
+
+#include "initOSM/initOSM.hpp"
 #include "init/init.hpp"
 #include "ALNS/heuristic.hpp"
 #include "model/model.hpp"
 #include "IO_functions/IO_functions.hpp"
 
-#include "gurobi_c++.h"
+
 
 #include <os/log.h>
 #include <os/signpost.h>

@@ -12,9 +12,9 @@
 int main()
 try
 {
-    Heuristic({9, 20});
-
+    InitOSM tmp;
     
+//    Heuristic({9, 20});
 //    Model m(1, 5);
     
     return 0;
