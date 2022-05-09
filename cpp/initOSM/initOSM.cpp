@@ -57,11 +57,40 @@ struct MyHandler: public osmium::handler::Handler
             return;
         
         
+        
+        //
+        // Only process specific highway types
+        //
+        
+        osmium::TagsFilter filter{false};
+        
+        filter.add_rule(true, "highway", "primary");
+        filter.add_rule(true, "highway", "secondary");
+        filter.add_rule(true, "highway", "tertiary");
+        filter.add_rule(true, "highway", "unclassified");
+        filter.add_rule(true, "highway", "service");
+        
+        filter.add_rule(true, "highway", "cycleway");
+        
+        filter.add_rule(true, "highway", "residential");
+        filter.add_rule(true, "highway", "living_street");
+        
+        if (not osmium::tags::match_any_of(way.tags(), filter))
+            return;
+        
+        
+        
+        //
+        // Process all nodes on this way
+        //
+        
         osmium::NodeRefList const &nodes = way.nodes();
         
         size_t const nNodes = nodes.size();
         
         d_nNodes_processed += nNodes;
+        
+//        cout << way.tags() << '\n';
         
         for (size_t idx = 0; idx < nNodes; ++idx)
         {
@@ -75,6 +104,8 @@ struct MyHandler: public osmium::handler::Handler
             osmium::geom::Tile const tile_prev {uint32_t(zoom), node_prev.location()};
             osmium::geom::Tile const tile_curr {uint32_t(zoom), node_curr.location()};
             osmium::geom::Tile const tile_next {uint32_t(zoom), node_next.location()};
+            
+            // Save node if previous or next node lies in a different tile
             
             if (tile_curr.x != tile_prev.x or
                 tile_curr.x != tile_next.x or
@@ -120,12 +151,3 @@ InitOSM::InitOSM()
 //    // Initialize progress bar, enable it only if STDERR is a TTY.
 //    osmium::ProgressBar progress{reader.file_size(), osmium::isatty(2)};
 }
-
-//nWays:       620721
-//nWays cross: 42499
-//nNodes:      177742
-
-//nWays:       620721
-//nWays cross: 41213
-//nNodes:      159144
-//Time: 4.33385

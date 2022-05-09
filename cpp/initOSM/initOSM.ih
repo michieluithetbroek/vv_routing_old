@@ -29,6 +29,9 @@
 #include <osmium/index/map/sparse_mem_array.hpp>
 #include <osmium/handler/node_locations_for_ways.hpp>
 
+#include <osmium/tags/taglist.hpp>
+#include <osmium/tags/tags_filter.hpp>
+
 // Get access to isatty utility function and progress bar utility class.
 #include <osmium/util/file.hpp>
 #include <osmium/util/progress_bar.hpp>
