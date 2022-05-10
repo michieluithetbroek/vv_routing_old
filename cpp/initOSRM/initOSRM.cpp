@@ -40,9 +40,11 @@ int test()
     OSRM const osrm{config};
     
     RouteParameters params;
-    
-    params.coordinates.push_back({util::FloatLongitude{6.550373971883581}, util::FloatLatitude{53.23416002388562}});
-    params.coordinates.push_back({util::FloatLongitude{6.5145924845682215}, util::FloatLatitude{52.863925873552844}});
+
+    params.coordinates.push_back({util::FloatLongitude{6.537585148221002}, util::FloatLatitude{53.23449806947688}});
+    params.coordinates.push_back({util::FloatLongitude{6.538097594330374}, util::FloatLatitude{53.23343271364707}});
+//    params.coordinates.push_back({util::FloatLongitude{6.539087175188395}, util::FloatLatitude{53.23153562065373}});
+//    params.coordinates.push_back({util::FloatLongitude{6.536445638647420}, util::FloatLatitude{53.23311902789684}});
 
     engine::api::ResultT result = json::Object();
     
@@ -54,8 +56,6 @@ int test()
     {
         auto &routes = json_result.values["routes"].get<json::Array>();
 
-        std::cout << size(routes.values) << std::endl;
-        
         // Let's just use the first route
         auto &route = routes.values[0].get<json::Object>();
         const auto distance = route.values["distance"].get<json::Number>().value;

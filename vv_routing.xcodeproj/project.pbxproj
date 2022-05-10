@@ -639,7 +639,6 @@
 					"-losrm",
 					"-lboost_iostreams",
 					"-lboost_filesystem",
-					"-lpthread",
 					"-lboost_thread-mt",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -681,7 +680,6 @@
 					"-losrm",
 					"-lboost_iostreams",
 					"-lboost_filesystem",
-					"-lpthread",
 					"-lboost_thread-mt",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
