@@ -598,6 +598,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				HEADER_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/include,
 					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
@@ -615,6 +616,7 @@
 					/opt/homebrew/Cellar/protobuf/3.19.4/lib,
 					/opt/homebrew/Cellar/gdal/3.4.3/lib,
 				);
+				LLVM_LTO = NO;
 				OTHER_CFLAGS = "-DIL_STD";
 				OTHER_LDFLAGS = (
 					"-lexpat",
@@ -632,6 +634,10 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/include,
 					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
@@ -649,6 +655,9 @@
 					/opt/homebrew/Cellar/protobuf/3.19.4/lib,
 					/opt/homebrew/Cellar/gdal/3.4.3/lib,
 				);
+				LLVM_LTO = NO;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DIL_STD";
 				OTHER_LDFLAGS = (
 					"-lexpat",

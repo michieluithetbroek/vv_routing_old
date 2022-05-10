@@ -14,14 +14,18 @@ struct MyHandler: public osmium::handler::Handler
 {
     struct Node
     {
-        int const idx_node;
-        int const idx_way;
+        int idx_node;
+        int idx_way;
         
-        double const lon;
-        double const lat;
+        double lon;
+        double lat;
         
-        int const tile_x;
-        int const tile_y;
+        int tile_x;
+        int tile_y;
+        
+        // Constructor
+        
+        Node() = default;
         
         Node(int idx_node, int idx_way,
              double lon, double lat,
@@ -34,6 +38,16 @@ struct MyHandler: public osmium::handler::Handler
           tile_x   (tile_x),
           tile_y   (tile_y)
         { }
+        
+        bool operator<(Node const &other) const
+        {
+            return idx_node < other.idx_node;
+        };
+        
+        bool operator==(Node const &other) const
+        {
+            return idx_node == other.idx_node;
+        };
     };
 
     unsigned long int d_nWays_processed  = 0;
@@ -41,6 +55,29 @@ struct MyHandler: public osmium::handler::Handler
     unsigned long int d_nNodes_processed = 0;
     
     std::vector<Node> d_nodes;
+    
+    void makeUnique()
+    {
+        std::sort(begin(d_nodes), end(d_nodes));
+        auto ip = std::unique(begin(d_nodes), end(d_nodes));
+        
+        size_t const distance = std::distance(begin(d_nodes), ip);
+        
+        d_nodes.resize(distance);
+    }
+    
+    void printNodes() const
+    {
+        cout << fixed << setprecision(4);
+
+        for (Node const &n: d_nodes)
+            cout << setw(15) << n.idx_way
+                 << setw(15) << n.idx_node
+                 << setw(10) << n.lon
+                 << setw(10) << n.lat
+                 << setw(8) << n.tile_x
+                 << setw(8) << n.tile_y << '\n';
+    }
     
     // This function is called by Osmium for each way object
     
@@ -90,8 +127,6 @@ struct MyHandler: public osmium::handler::Handler
         
         d_nNodes_processed += nNodes;
         
-//        cout << way.tags() << '\n';
-        
         for (size_t idx = 0; idx < nNodes; ++idx)
         {
             size_t const idx_prev = (idx > 0 ? idx - 1 : 0);
@@ -112,9 +147,12 @@ struct MyHandler: public osmium::handler::Handler
                 tile_curr.y != tile_prev.y or
                 tile_curr.y != tile_next.y)
             {
-                d_nodes.emplace_back(node_curr.ref(), way.id(),
-                                     node_curr.lon(), node_curr.lat(),
-                                     tile_curr.x, tile_curr. y);
+                d_nodes.emplace_back(node_curr.ref(),
+                                     way.id(),
+                                     node_curr.lon(),
+                                     node_curr.lat(),
+                                     tile_curr.x,
+                                     tile_curr. y);
             }
         }
     }
@@ -129,6 +167,7 @@ InitOSM::InitOSM()
 //    string const fileName = "/Users/michiel/Dropbox/programming/OSM_data/groningen-latest.osm.pbf";
     
     osmium::io::File input_file{fileName};
+    
     osmium::io::Reader reader{input_file,
         osmium::osm_entity_bits::node |
         osmium::osm_entity_bits::way};
@@ -137,6 +176,8 @@ InitOSM::InitOSM()
     
     MyHandler handler;
     osmium::apply(reader, cache, handler);
+    
+    handler.makeUnique();
     
     cout << "nWays processed:     " << handler.d_nWays_processed  << '\n'
          << "nWays cross tile:    " << handler.d_nWays_cross      << '\n'
@@ -147,6 +188,7 @@ InitOSM::InitOSM()
     
     cout << "Time: " << (static_cast<double>((end - start).count())) / 1000000 << endl;
     
+//    handler.printNodes();
     
 //    // Initialize progress bar, enable it only if STDERR is a TTY.
 //    osmium::ProgressBar progress{reader.file_size(), osmium::isatty(2)};
