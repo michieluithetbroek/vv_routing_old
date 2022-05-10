@@ -55,6 +55,15 @@ class InitOSM
 public:
     InitOSM();
     
+    void makeUnique()
+    {
+        std::sort(begin(d_nodes), end(d_nodes));
+        
+        auto ip = std::unique(begin(d_nodes), end(d_nodes));
+        
+        d_nodes.resize(std::distance(begin(d_nodes), ip));
+    }
+    
     void reindex()
     {
         for (size_t idx = 0; idx < size(d_nodes); ++idx)

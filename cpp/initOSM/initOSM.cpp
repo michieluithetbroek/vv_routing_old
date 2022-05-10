@@ -7,9 +7,6 @@
 
 #include "initOSM.ih"
 
-using index_t = osmium::index::map::SparseMemArray<osmium::unsigned_object_id_type, osmium::Location>;
-using cache_t = osmium::handler::NodeLocationsForWays<index_t>;
-
 struct MyHandler: public osmium::handler::Handler
 {
     unsigned long int d_nWays_processed  = 0;
@@ -17,16 +14,6 @@ struct MyHandler: public osmium::handler::Handler
     unsigned long int d_nNodes_processed = 0;
     
     std::vector<Node> d_nodes;
-    
-    void makeUnique()
-    {
-        std::sort(begin(d_nodes), end(d_nodes));
-        auto ip = std::unique(begin(d_nodes), end(d_nodes));
-        
-        size_t const distance = std::distance(begin(d_nodes), ip);
-        
-        d_nodes.resize(distance);
-    }
     
     void printNodes() const
     {
@@ -122,11 +109,14 @@ struct MyHandler: public osmium::handler::Handler
 
 InitOSM::InitOSM()
 {
+    using index_t = osmium::index::map::SparseMemArray<osmium::unsigned_object_id_type, osmium::Location>;
+    using cache_t = osmium::handler::NodeLocationsForWays<index_t>;
+    
     index_t index;
     cache_t cache{index};
     
-    string const fileName = "/Users/michiel/Dropbox/programming/OSM_data/netherlands-latest.osm.pbf";
-//    string const fileName = "/Users/michiel/Dropbox/programming/OSM_data/groningen-latest.osm.pbf";
+//    string const fileName = "/Users/michiel/Dropbox/programming/OSM_data/netherlands-latest.osm.pbf";
+    string const fileName = "/Users/michiel/Dropbox/programming/OSM_data/groningen-latest.osm.pbf";
     
     osmium::io::File input_file{fileName};
     
@@ -138,24 +128,18 @@ InitOSM::InitOSM()
     
     MyHandler handler;
     osmium::apply(reader, cache, handler);
-    
-    handler.makeUnique();
 
+    d_nodes = std::move(handler.d_nodes);
+    
+    makeUnique();
+    reindex();
+    
     cout << "nWays processed:     " << handler.d_nWays_processed  << '\n'
          << "nWays cross tile:    " << handler.d_nWays_cross      << '\n'
          << "nNodes processed:    " << handler.d_nNodes_processed << '\n'
-         << "nNodes final:        " << handler.d_nodes.size()     << '\n';
-    
-    d_nodes = std::move(handler.d_nodes);
-    
-    reindex();
-    
+         << "nNodes final:        " << d_nodes.size()             << '\n';
+   
     auto const end = std::chrono::system_clock::now();
     
     cout << "Time: " << (static_cast<double>((end - start).count())) / 1000000 << endl;
-    
-//    handler.printNodes();
-    
-//    // Initialize progress bar, enable it only if STDERR is a TTY.
-//    osmium::ProgressBar progress{reader.file_size(), osmium::isatty(2)};
 }

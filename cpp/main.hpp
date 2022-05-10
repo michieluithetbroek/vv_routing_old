@@ -14,6 +14,8 @@
 #include "gurobi_c++.h"
 
 #include "initOSM/initOSM.hpp"
+#include "initOSRM/initOSRM.hpp"
+
 #include "init/init.hpp"
 #include "ALNS/heuristic.hpp"
 #include "model/model.hpp"

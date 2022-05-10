@@ -55,6 +55,7 @@
 		CC7F97AA28243F6F009429E2 /* ALNS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97A928243F6F009429E2 /* ALNS.cpp */; };
 		CC7F97AE2824621D009429E2 /* initOSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97AC2824621D009429E2 /* initOSM.cpp */; };
 		CC7F97B128246499009429E2 /* heuristic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7F97B028246499009429E2 /* heuristic.cpp */; };
+		CCB038F5282B08AA0020355D /* initOSRM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCB038F3282B08AA0020355D /* initOSRM.cpp */; };
 		CCB1812528073CAF00FF79D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCB1812428073CAF00FF79D4 /* main.cpp */; };
 		CCB18163280769D900FF79D4 /* libgurobi95.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB18161280769D900FF79D4 /* libgurobi95.dylib */; };
 		CCB18164280769D900FF79D4 /* libgurobi_c++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB18162280769D900FF79D4 /* libgurobi_c++.a */; };
@@ -143,6 +144,9 @@
 		CC7F97B2282464BA009429E2 /* heuristic.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = heuristic.hpp; sourceTree = "<group>"; };
 		CC7F97B3282464DC009429E2 /* heuristic.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = heuristic.ih; sourceTree = "<group>"; };
 		CC7F97B42824658F009429E2 /* initOSM.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = initOSM.ih; sourceTree = "<group>"; };
+		CCB038F3282B08AA0020355D /* initOSRM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initOSRM.cpp; sourceTree = "<group>"; };
+		CCB038F4282B08AA0020355D /* initOSRM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = initOSRM.hpp; sourceTree = "<group>"; };
+		CCB038F6282B08D30020355D /* initOSRM.ih */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = initOSRM.ih; sourceTree = "<group>"; };
 		CCB09CFF281EF0740015B50D /* 15_tileSets */ = {isa = PBXFileReference; lastKnownFileType = text; path = 15_tileSets; sourceTree = "<group>"; };
 		CCB09D00281EF0740015B50D /* 15_distances */ = {isa = PBXFileReference; lastKnownFileType = text; path = 15_distances; sourceTree = "<group>"; };
 		CCB1812128073CAF00FF79D4 /* vv_routing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vv_routing; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +305,16 @@
 			path = initOSM;
 			sourceTree = "<group>";
 		};
+		CCB038F2282B089A0020355D /* initOSRM */ = {
+			isa = PBXGroup;
+			children = (
+				CCB038F3282B08AA0020355D /* initOSRM.cpp */,
+				CCB038F4282B08AA0020355D /* initOSRM.hpp */,
+				CCB038F6282B08D30020355D /* initOSRM.ih */,
+			);
+			path = initOSRM;
+			sourceTree = "<group>";
+		};
 		CCB1811828073CAF00FF79D4 = {
 			isa = PBXGroup;
 			children = (
@@ -323,8 +337,9 @@
 			isa = PBXGroup;
 			children = (
 				CC7F97AB282461F7009429E2 /* initOSM */,
-				CC7F979728217001009429E2 /* IO_functions */,
+				CCB038F2282B089A0020355D /* initOSRM */,
 				CC5A7978281A81BE00752F91 /* init */,
+				CC7F979728217001009429E2 /* IO_functions */,
 				CC72CE052808872D00D1D8E2 /* model */,
 				CC5A798A281A9A7A00752F91 /* ALNS */,
 				CCB1816528076AF700FF79D4 /* model1.cpp */,
@@ -456,6 +471,7 @@
 				CC7F979C2821A7AE009429E2 /* CFI_fixed.cpp in Sources */,
 				CC72CE24280C43E800D1D8E2 /* callback.cpp in Sources */,
 				CC68A5B5281F1E2500C3563C /* swap.cpp in Sources */,
+				CCB038F5282B08AA0020355D /* initOSRM.cpp in Sources */,
 				CC5A7980281A888E00752F91 /* read_edges.cpp in Sources */,
 				CC5A797B281A81CC00752F91 /* init.cpp in Sources */,
 				CC5A7982281A8A3300752F91 /* set_nNodes.cpp in Sources */,
@@ -601,21 +617,30 @@
 				GCC_OPTIMIZATION_LEVEL = 1;
 				HEADER_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/include,
-					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
+					/opt/homebrew/Cellar/libosmium/2.18.0/include,
 					/opt/local/include,
 					/opt/homebrew/Cellar/bzip2/1.0.8/include,
 					/opt/homebrew/Cellar/zlib/1.2.12/include,
+					"/opt/homebrew/Cellar/osrm-backend/5.26.0_1/include/**",
+					/opt/homebrew/Cellar/boost/1.78.0_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/lib,
 					"$(LOCAL_LIBRARY_DIR)/gurobi951/macos_universal2/lib",
 					/opt/homebrew/Cellar/bzip2/1.0.8/lib,
+					"/opt/homebrew/Cellar/osrm-backend/5.26.0_1/lib",
+					/opt/homebrew/Cellar/boost/1.78.0_1/lib,
 				);
 				LLVM_LTO = NO;
 				OTHER_CFLAGS = "-DIL_STD";
 				OTHER_LDFLAGS = (
 					"-lbz2",
 					"-lz",
+					"-losrm",
+					"-lboost_iostreams",
+					"-lboost_filesystem",
+					"-lpthread",
+					"-lboost_thread-mt",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -632,15 +657,19 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/include,
-					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
+					/opt/homebrew/Cellar/libosmium/2.18.0/include,
 					/opt/local/include,
 					/opt/homebrew/Cellar/bzip2/1.0.8/include,
 					/opt/homebrew/Cellar/zlib/1.2.12/include,
+					"/opt/homebrew/Cellar/osrm-backend/5.26.0_1/include/**",
+					/opt/homebrew/Cellar/boost/1.78.0_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/lib,
 					"$(LOCAL_LIBRARY_DIR)/gurobi951/macos_universal2/lib",
 					/opt/homebrew/Cellar/bzip2/1.0.8/lib,
+					"/opt/homebrew/Cellar/osrm-backend/5.26.0_1/lib",
+					/opt/homebrew/Cellar/boost/1.78.0_1/lib,
 				);
 				LLVM_LTO = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -649,6 +678,11 @@
 				OTHER_LDFLAGS = (
 					"-lbz2",
 					"-lz",
+					"-losrm",
+					"-lboost_iostreams",
+					"-lboost_filesystem",
+					"-lpthread",
+					"-lboost_thread-mt",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
