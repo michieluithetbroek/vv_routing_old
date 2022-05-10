@@ -13,38 +13,25 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <string>
 #include <chrono>
 #include <algorithm>
 
-#include <osmium/io/any_input.hpp>
-#include <osmium/io/any_output.hpp>
-#include <osmium/io/any_compression.hpp>
+#include <osmium/io/pbf_input.hpp>
+#include <osmium/io/pbf_output.hpp>
+#include <osmium/io/bzip2_compression.hpp>
 
-#include <osmium/osm/object.hpp>
 #include <osmium/osm/node.hpp>
 #include <osmium/osm/way.hpp>
-#include <osmium/visitor.hpp>
 
-#include <osmium/osm/types.hpp>
 #include <osmium/index/map/sparse_mem_array.hpp>
 #include <osmium/handler/node_locations_for_ways.hpp>
 
 #include <osmium/tags/taglist.hpp>
 #include <osmium/tags/tags_filter.hpp>
 
-// Get access to isatty utility function and progress bar utility class.
-#include <osmium/util/file.hpp>
-#include <osmium/util/progress_bar.hpp>
-
 // The Location contains a longitude and latitude and is usually used inside
 // a node to store its location in the world.
 #include <osmium/osm/location.hpp>
-
-// Needed for the Mercator projection function. Osmium supports the Mercator
-// projection out of the box, or pretty much any projection using the Proj.4
-// library (with the osmium::geom::Projection class).
-#include <osmium/geom/mercator_projection.hpp>
 
 // The Tile class handles tile coordinates and zoom levels.
 #include <osmium/geom/tile.hpp>

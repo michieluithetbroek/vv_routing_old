@@ -603,26 +603,18 @@
 					/Library/gurobi951/macos_universal2/include,
 					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
 					/opt/local/include,
-					opt/homebrew/Cellar/expat/2.4.7/include,
 					/opt/homebrew/Cellar/bzip2/1.0.8/include,
-					/opt/homebrew/Cellar/protobuf/3.19.4/include,
-					/opt/homebrew/Cellar/gdal/3.4.3/include,
 					/opt/homebrew/Cellar/zlib/1.2.12/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/lib,
 					"$(LOCAL_LIBRARY_DIR)/gurobi951/macos_universal2/lib",
 					/opt/homebrew/Cellar/bzip2/1.0.8/lib,
-					/opt/homebrew/Cellar/protobuf/3.19.4/lib,
-					/opt/homebrew/Cellar/gdal/3.4.3/lib,
 				);
 				LLVM_LTO = NO;
 				OTHER_CFLAGS = "-DIL_STD";
 				OTHER_LDFLAGS = (
-					"-lexpat",
 					"-lbz2",
-					"-lprotobuf",
-					"-lgdal",
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,28 +634,20 @@
 					/Library/gurobi951/macos_universal2/include,
 					"/Users/michiel/Dropbox/programming/libosmium-2.18.0/include",
 					/opt/local/include,
-					opt/homebrew/Cellar/expat/2.4.7/include,
 					/opt/homebrew/Cellar/bzip2/1.0.8/include,
-					/opt/homebrew/Cellar/protobuf/3.19.4/include,
-					/opt/homebrew/Cellar/gdal/3.4.3/include,
 					/opt/homebrew/Cellar/zlib/1.2.12/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/Library/gurobi951/macos_universal2/lib,
 					"$(LOCAL_LIBRARY_DIR)/gurobi951/macos_universal2/lib",
 					/opt/homebrew/Cellar/bzip2/1.0.8/lib,
-					/opt/homebrew/Cellar/protobuf/3.19.4/lib,
-					/opt/homebrew/Cellar/gdal/3.4.3/lib,
 				);
 				LLVM_LTO = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DIL_STD";
 				OTHER_LDFLAGS = (
-					"-lexpat",
 					"-lbz2",
-					"-lprotobuf",
-					"-lgdal",
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

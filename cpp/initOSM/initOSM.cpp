@@ -12,44 +12,6 @@ using cache_t = osmium::handler::NodeLocationsForWays<index_t>;
 
 struct MyHandler: public osmium::handler::Handler
 {
-    struct Node
-    {
-        int idx_node;
-        int idx_way;
-        
-        double lon;
-        double lat;
-        
-        int tile_x;
-        int tile_y;
-        
-        // Constructor
-        
-        Node() = default;
-        
-        Node(int idx_node, int idx_way,
-             double lon, double lat,
-             int tile_x, int tile_y)
-        :
-          idx_node (idx_node),
-          idx_way  (idx_way),
-          lon      (lon),
-          lat      (lat),
-          tile_x   (tile_x),
-          tile_y   (tile_y)
-        { }
-        
-        bool operator<(Node const &other) const
-        {
-            return idx_node < other.idx_node;
-        };
-        
-        bool operator==(Node const &other) const
-        {
-            return idx_node == other.idx_node;
-        };
-    };
-
     unsigned long int d_nWays_processed  = 0;
     unsigned long int d_nWays_cross      = 0;
     unsigned long int d_nNodes_processed = 0;
@@ -75,8 +37,8 @@ struct MyHandler: public osmium::handler::Handler
                  << setw(15) << n.idx_node
                  << setw(10) << n.lon
                  << setw(10) << n.lat
-                 << setw(8) << n.tile_x
-                 << setw(8) << n.tile_y << '\n';
+                 << setw(8)  << n.tile_x
+                 << setw(8)  << n.tile_y << '\n';
     }
     
     // This function is called by Osmium for each way object
@@ -96,7 +58,7 @@ struct MyHandler: public osmium::handler::Handler
         
         
         //
-        // Only process specific highway types
+        // Only keep specific highway types
         //
         
         osmium::TagsFilter filter{false};
@@ -152,10 +114,10 @@ struct MyHandler: public osmium::handler::Handler
                                      node_curr.lon(),
                                      node_curr.lat(),
                                      tile_curr.x,
-                                     tile_curr. y);
+                                     tile_curr.y);
             }
-        }
-    }
+        } 
+    } 
 };
 
 InitOSM::InitOSM()
@@ -178,11 +140,15 @@ InitOSM::InitOSM()
     osmium::apply(reader, cache, handler);
     
     handler.makeUnique();
-    
+
     cout << "nWays processed:     " << handler.d_nWays_processed  << '\n'
          << "nWays cross tile:    " << handler.d_nWays_cross      << '\n'
          << "nNodes processed:    " << handler.d_nNodes_processed << '\n'
          << "nNodes final:        " << handler.d_nodes.size()     << '\n';
+    
+    d_nodes = std::move(handler.d_nodes);
+    
+    reindex();
     
     auto const end = std::chrono::system_clock::now();
     
